@@ -1,0 +1,87 @@
+\begin{thebibliography}{10}
+
+\bibitem{bay2009evaluation}
+Mert Bay, Andreas~F Ehmann, and J~Stephen Downie.
+\newblock Evaluation of multiple-f0 estimation and tracking systems.
+\newblock In {\em ISMIR}, pages 315--320, 2009.
+
+\bibitem{bock2012polyphonic}
+S~Bock and Markus Schedl.
+\newblock Polyphonic piano note transcription with recurrent neural networks.
+\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE
+  International Conference on}, pages 121--124. IEEE, 2012.
+
+\bibitem{boulanger2012modeling}
+Nicolas Boulanger-lewandowski, Yoshua Bengio, and Pascal Vincent.
+\newblock Modeling temporal dependencies in high-dimensional sequences:
+  Application to polyphonic music generation and transcription.
+\newblock In {\em Proceedings of the 29th International Conference on Machine
+  Learning (ICML-12)}, pages 1159--1166, 2012.
+
+\bibitem{boulanger2013high}
+Nicolas Boulanger-Lewandowski, Yoshua Bengio, and Pascal Vincent.
+\newblock High-dimensional sequence transduction.
+\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
+  International Conference on}, pages 3178--3182. IEEE, 2013.
+
+\bibitem{boulangerphone}
+Nicolas Boulanger-Lewandowski, Jasha Droppo, Mike Seltzer, and Dong Yu.
+\newblock Phone sequence modeling with recurrent neural networks.
+
+\bibitem{emiya2010multipitch}
+Valentin Emiya, Roland Badeau, and Bertrand David.
+\newblock Multipitch estimation of piano sounds using a new probabilistic
+  spectral smoothness principle.
+\newblock {\em Audio, Speech, and Language Processing, IEEE Transactions on},
+  18(6):1643--1654, 2010.
+
+\bibitem{goodfellow2009measuring}
+Ian Goodfellow, Honglak Lee, Quoc~V Le, Andrew Saxe, and Andrew~Y Ng.
+\newblock Measuring invariances in deep networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  646--654, 2009.
+
+\bibitem{graves2012sequence}
+Alex Graves.
+\newblock Sequence transduction with recurrent neural networks.
+\newblock {\em arXiv preprint arXiv:1211.3711}, 2012.
+
+\bibitem{hinton2012deep}
+Geoffrey Hinton, Li~Deng, Dong Yu, George~E Dahl, Abdel-rahman Mohamed, Navdeep
+  Jaitly, Andrew Senior, Vincent Vanhoucke, Patrick Nguyen, Tara~N Sainath,
+  et~al.
+\newblock Deep neural networks for acoustic modeling in speech recognition: The
+  shared views of four research groups.
+\newblock {\em Signal Processing Magazine, IEEE}, 29(6):82--97, 2012.
+
+\bibitem{Lafferty:2001:CRF:645530.655813}
+John~D. Lafferty, Andrew McCallum, and Fernando C.~N. Pereira.
+\newblock Conditional random fields: Probabilistic models for segmenting and
+  labeling sequence data.
+\newblock In {\em Proceedings of the Eighteenth International Conference on
+  Machine Learning}, ICML '01, pages 282--289, 2001.
+
+\bibitem{nam2011classification}
+Juhan Nam, Jiquan Ngiam, Honglak Lee, and Malcolm Slaney.
+\newblock A classification-based polyphonic piano transcription approach using
+  learned feature representations.
+\newblock In {\em ISMIR}, pages 175--180, 2011.
+
+\bibitem{poliner2006discriminative}
+Graham~E Poliner and Daniel~PW Ellis.
+\newblock A discriminative model for polyphonic piano transcription.
+\newblock {\em EURASIP Journal on Advances in Signal Processing}, 2007, 2006.
+
+\bibitem{schmidhuber1992learning}
+J{\"u}rgen Schmidhuber.
+\newblock Learning complex, extended sequences using the principle of history
+  compression.
+\newblock {\em Neural Computation}, 4(2):234--242, 1992.
+
+\bibitem{sigtiarnn}
+Siddharth Sigtia, Emmanouil Benetos, Srikanth Cherla, Tillman Weyde, Artur
+  S~d’Avila Garcez, and Simon Dixon.
+\newblock An rnn-based music language model for improving automatic music
+  transcription.
+
+\end{thebibliography}

@@ -1,0 +1,294 @@
+%Trial to test git
+%Trial2 to test git
+% Template for ICASSP-2013 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,graphicx,comment}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algtext*{EndWhile}
+\algtext*{EndFor}
+%\usepackage[pdftex]{graphicx}
+
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+
+% Title.
+% ------
+\title{A RECURRENT NEURAL NETWORK BASED ARCHITECTURE FOR MUSIC TRANSCRIPTION}
+\name{Siddharth Sigtia$^\ast$,Emmanouil Benetos$^\ast$,Tillman Weyde$^\ast$,Artur Garcez D'Silva$^\ast$,Nicolas Boulanger-Lewandownski$^\ast$,Simon Dixon$^\ast$}
+% \nametwo{Siddharth Sigtia$^\ast$,Emmanouil Benetos$^\ast$,Tillman Weyde$^\ast$}
+%         {Artur Garcez D'Silva$^\ast$,Nicolas Boulanger-Lewandownski$^\ast$,Simon Dixon$^\ast$}
+\address{$\ast$Centre for Digital Music, EECS, Queen Mary University of London, London, UK\\
+$\ddag$ Department of Computer Science, City University London, London, UK\\
+$\dag$ Google Inc, Mountain View, California, USA}
+%
+% Single address.
+% ---------------
+%\name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
+%\address{Author Affiliation(s)}
+%
+% For example:
+% ------------
+%\address{School\\
+%   Department\\
+%   Address}
+%
+% Two addresses (uncomment and modify for two-address case).
+% ----------------------------------------------------------
+% \threeauthors
+%   {Siddharth Sigtia\sthanks{This work was funded by the PIMP Priming fund from City University}, Simon Dixon}
+%    {Centre For Digial Music, \\
+%   Queen Mary University of London\\
+%   Mile End Road, London E1 4NS, UK}
+%   {Emmanouil Benetos, Tillman Weyde, Artur Garcez D'Silva}
+%    {Informatics Group\\
+%    City University\\
+%    London}
+%   {Nicolas Boulanger}
+%    {Google Inc\\
+%    Mountain view, California\\
+%     USA}
+
+%
+
+
+\begin{document}
+\ninept
+%
+\maketitle
+%
+\begin{abstract}
+We investigate the problem of incorporating higher-level symbolic score-like information into Automatic Music Transcription (AMT) systems to improve their performance. We use recurrent neural networks (RNNs) and their variants as music language models (MLMs) and present a generative architecture for combining these models with predictions from a frame level acoustic classifier. The proposed model computes a distribution over possible output sequences given the acoustic input signal and we present an algorithm for performing a global search for good candidate transcriptions. The performance of the proposed model is evaluated on the MAPS dataset and compared to existing transcription systems. 
+\end{abstract}
+%
+\begin{keywords}
+Recurrent Neural Networks, Music Transcription
+\end{keywords}
+%
+\section{Introduction}
+\label{sec:intro} 
+
+Automatic Music Transcription (AMT) involves identifying the pitches present in a given polyphonic acoustic signal and generating a corresponding symbolic, score-like transcription. Most AMT systems focus primarily on modeling the acoustic signal to identify the fundamental pitches present as a function of time. Music exhibits structural regularity much like language, and therefore symbolic music prediction models (MLMs) can provide accurate symbolic priors and have the potential to significantly improve AMT systems. However, MLMs have not been extensively applied to AMT because polyphonic symbolic music prediction is quite a difficult problem and simple models such as n-grams which are used in speech are insufficient for modelling sequences of polyphonic music \cite{boulanger2012modeling}. 
+
+RNNs are powerful temporal models that can, in theory, capture long term-dependencies between inputs because of their powerful hidden representation. RNNs and their more complex variants \cite{boulanger2012modeling}, have recently been applied successfully to the problem of symbolic music prediction. This has led to a revival of interest in the problem of incorporating prior symbolic knowledge to improve AMT systems. Although RNNs achieve reasonable accuracy at symbolic music prediction tasks, it is not obvious how these priors can be incorporated into music transcription systems. The obvious strategy of multiplying the predictions of the acoustic and language models and then renormalizing, like in a product of experts, suffers from the well known \emph{label bias} problem for low entropy sequences \cite{Lafferty:2001:CRF:645530.655813}. 
+
+Recently, there have been a few studies that try to incorporate RNN-based music prediction systems into AMT systems. The model proposed in \cite{boulanger2013high}, is an input-output variant of the RNN-RBM model for music transcription. Although the model performs well on several datasets, it suffers from the problem of \emph{teacher forcing}. This is an issue that arises due to the ineffective weighting of acoustic and symbolic information. The method proposed in \cite{sigtiarnn}, incorporates symbolic information into a PLCA based transcription system using Dirichlet priors. Although the model seems to perform well, it can only be used when the acoustic model is PLCA based. Another shortcoming of the model in \cite{sigtiarnn} is that the acoustic and language models are trained independently by optimising different objectives. 
+
+The popular technique of superposing a Hidden Markov Model (HMM) to the outputs of a frame-level classifier, like in state-of-the-art speech recognition systems \cite{hinton2012deep} is intractable for AMT tasks. This is because the outputs of the acoustic classifier at any time are high-dimensional binary vectors. Consequently, the number of hidden HMM states is exponential in the number of output variables. This makes the parameter estimation problem for the HMM intractable. HMMs can be applied to polyphonic AMT systems under the assumption that each pitch is independent of all the other pitches \cite{poliner2006discriminative}. However this assumption is violated by polyphonic music and therefore the method is unsatisfactory. 
+
+In this paper we employ the architecture in \cite{boulangerphone}, which was originally proposed for modelling sequences of phonemes in speech recognition. The architecture provides a principled way for superposing an RNN to the predictions of an \emph{arbitrary} frame level classifier and combines the two models under a common training objective. It is advantageous to use RNNs for high-dimensional problems like AMT, since the outputs of the RNN form a distributed representation, which makes the parameter estimation problem more tractable compared to an HMM. Additionally, the predictions of an RNN are conditioned on the entire sequence history which is a generalisation over the HMM transitions which are conditioned only on the previous time-step. We present an efficient high-dimensional beam-search algorithm for decoding and compare the performance of this \emph{hybrid} architecture to existing AMT systems.
+
+The rest of the paper is organised as follows. Section two introduces RNNs. Section 3 describes the hybrid architecture and section 4 discusses the inference algorithm that is used for testing. Section 5 describes the experimental setup and details of training. Section 6 discusses the results and the paper is concluded in section 7. 
+  %\cite{boulanger2013high,sigtiarnn}. However these systems are not very general, since they work for only a particular configuration of acoustic and language models. 
+%\cite{} proposes an I/O RNN-RBM model that maps an input sequence to a distribution over possible outputs. However this model suffers from the problem of teacher forcing where the acoustic and symbolic information is not properly weighed and symbolic information can suppress the acoustic information. \cite{} proposes a method for combining an RNN-based language model with a PLCA acoustic model. However, this architecture is very restrictive since it works with only a specific kind of acoustic model. The models are also trained independently and therefore run the risk of counting factors twice. 
+
+
+%both in terms of available data and the computations resources required. 
+
+%In the same way that statistical models of natural language greatly help improve speech recognition systems by providing useful priors about the next word in a sequence. Similarly, music language models (MLMs) could potentially be instrumental in greatly improving over the current transcription systems.  
+%AMT falls under the category of sequence transduction problems in machine learning which include speech recognition, chord recognition and machine translation. 
+
+%The outputs of an AMT system are high-dimensional vectors which makes the problem of incorporating symbolic information more challenging. For example, the output of a transcription system in a piano transcription task at any given time is an $88$ dimensional binary vector. Therefore the number of possible configurations of the output at any given time is $2^{88}$. The popular technique of adding an HMM to the outputs of a frame-level classifier, like in state-of-the-art speech recognition systems therefore becomes intractable for AMT tasks. Estimating such a large number of parameters would be intractable both computationally and in terms of available data. Transcription systems do incorporate HMMs for post-processing but my making strong assumptions of independence between notes.  
+ 
+%The above examples make it clear that although RNNs can be trained to be accurate MLMs, it is not obvious how to efficiently combine MLMs with acoustic models under a combined training objective. The simplest solution to this problem would be to multiply the predictions of the acoustic and language models and then renormalise the outputs, like in a product of experts. However this method suffers from the label bias problem which is a common issue in speech recognition. In order to overcome these difficulties we follow the method proposed in boulanger et. al. for modelling sequences of phonemes for speech recognition. This model imposes a proper weighting of predictions from the two sources of information. This model is a generative graphical model that generalises the Hidden Markov Model (HMM) architecture and provides a principled way of combining predictions from an RNN MLM with outputs of an arbitrary frame-level acoustic classifier. We use beam search for performing a global search over the distribution over possible outputs. The beam search differs from beam search over possible phoneme outputs because the output space is extremely high dimensional. Also sampling from the language model is not trivial and we propose efficient ways of sampling from the language model. 
+
+
+
+
+\section{Recurrent Neural Networks}
+\label{sec:format}
+An RNN is a powerful discrete-time dynamical system that can in principal, capture complex long term dependencies between its inputs. An RNN, when used as a generative model, defines a distribution over a sequence $z$ in the following manner:
+\begin{equation}
+P(z) = \prod_{t=1}^{T} P(z_t|\mathcal A_t)
+\end{equation} where $\mathcal A_t \equiv \left\{ z_{\tau} | \tau < t \right\}$ is the sequence history at time $t$. The hidden state of an RNN with a single layer of hidden units is defined by the following recurrence relation:
+\begin{equation}
+h_t = \sigma(W_{zh}z_{t-1} + W_{hh}h_{t-1} + b_{h})
+\end{equation} where $W_{zh}$ are the weights from the inputs at $t-1$ to the hidden units at $t$, $W_{hh}$ are the recurrent weights between hidden units at $t-1$ and $t$ and $b_h$ are the hidden biases. 
+
+The output vector at time $z_t$ is obtained in the following way:
+\begin{equation}
+ z_t = f(W_{hz}h_t + b_z)
+\end{equation} where $f$ is some function applied to each element. The choice of $f$ depends on the outputs that are being modelled. If the output variables form a one-hot representation, then $f$ is a softmax function that yields a multinomial distribution. When $f$ is a sigmoid function, then the outputs represent the independent probabilities of each output being on. 
+
+The fact that the output variables are independent of each other is a very restrictive assumption when used for modelling polyphonic music. This is because musical notes appear in highly correlated patterns where the presence or absence of a note influences the likelihood of occurrence of all other notes. Therefore, instead of using the RNN to predict the probabilities of pitches directly, we can use the RNN to predict the parameters of a high-dimensional distribution estimator like the Restricted Boltzmann Machine (RBM) or the Neural Autoregressive Density Estimator (NADE) \cite{boulanger2012modeling}. The RNN-NADE is a natural choice for a language model since it is tractable to obtain probabilities from the conditional NADEs at each step, which is necessary during inference. Another advantage of using the RNN-NADE is that the gradients of the objective function can be calculated exactly and therefore we can make use of more powerful optimisers like Hessian Free (HF).  
+
+
+\section{Hybrid Architecture}
+
+In this section we describe the architecture used to combine an RNN-based MLM with an arbitrary frame level classifier. The architecture is a generative graphical model that generalises the HMM architecture by conditioning predictions at some time $t$, on all previous predictions $\tau < t$, as opposed to the HMM, where $\tau = t-1$. Figure 1 is a graphical representation of the architecture. 
+
+
+The hybrid architecture factorises the joint probability of the sequence of acoustic vectors $x$ and their corresponding labels $z$ in the following way:
+
+\begin{align}
+ P(z,x) &= P(z_{1} \ldots z_{T} , x_{1} \ldots x_{T}) \\ 
+  &= P(z_1)P(x_{1}|z_1) \prod_{t=2}^{T} P(z_t|\mathcal{A}_t) P(x_t|z_t) \\ \nonumber
+\end{align}
+
+In the above factorisation, the symbolic prediction terms $P(z_t|\mathcal{A}_t)$ can be obtained from an RNN, while the $P(x_t|z_t)$ terms are \emph{emission} probabilities of observing the acoustic vector $x_t$ given a state $z_t$. The above factorisation makes the following independence assumption for an emitted acoustic vector $x_t$:
+\begin{equation}
+\label{independence}
+P(x_t | z, \left\{ x_{\tau} , t < \tau \right\}) = P(x_t | z_t)
+\end{equation}
+Using Bayes' rule, the joint probability can be reformulated in terms of the scaled likelihood:
+
+\begin{equation}
+P(z,x) \propto P(z_1;\Theta_l) \frac{P(z_1|x_{1})}{P(z_1)} \prod_{t=2}^{T} P(z_t|\mathcal{A}_t) \frac{P(z_t|x_t)}{P(z_t)}
+\end{equation}
+The term $P(z_t|x_t)$ can be obtained from the output of an arbitrary frame-level classifier, $P(z_t)$ is the marginal distribution of target vectors which can be easily calculated from the training set, $\Theta_l$ are the parameters of the language model and constant terms involving $x_t$ have been removed by introducing the proportionality. 
+
+\begin{figure}[]
+\begin{minipage}[b]{1.0\linewidth}
+  \centering
+  \centerline{\includegraphics[width=8.5cm]{graph.png}}
+%  \vspace{2.0cm}
+\end{minipage}
+\label{fig:res}
+\caption{Hybrid Architecture}
+\end{figure}
+
+We train the model by maximising the log-likelihood of occurrence of pairs of training examples $x,z$. The model can be easily trained with gradient descent because the gradient of the log-likelihood splits up into terms associated with the acoustic and language models in the following way:
+\begin{equation}
+\label{train_1}
+\frac{\partial \log P(x,z)}{\partial \Theta_a} = \frac{\partial}{\partial \Theta_a} \sum_{t=1}^T \log P(z_t|x_t)
+\end{equation}
+\begin{equation}
+\label{train_2}
+\frac{\partial \log P(x,z)}{\partial \Theta_l} = \frac{\partial}{\partial \Theta_l} \sum_{t=1}^T \log P(z_t|\mathcal A_t)
+\end{equation}
+where $\Theta_a,\Theta_l$ are the parameters of the acoustic and language models respectively. 
+
+\section{Inference}
+
+In the hybrid architecture, the prediction $z_t$ at time $t$ is conditioned upon the entire sequence history $\mathcal A_t$ due to the RNN language model. This enforces successive frames to be coherent and thus performs temporal smoothing. In addition to temporal smoothing, an accurate language model can impose musicological rules and restrictions on the output transcriptions. While decoding, proceeding in a greedy chronological manner yields sub-optimal results because the sequence history $\mathcal A_t$ has not been optimally determined. Exhaustively searching for the globally optimal sequence is also intractable since each non-leaf node in the search graph has $2^{N}$ descendants. Instead, we perform a global search for the most likely sequence using beam search, a breadth-first tree search algorithm that keeps track of only the $w$ most promising paths at any depth $t$ \cite{graves2012sequence,boulanger2013high,boulangerphone}. In the search graph, a node at depth $t$ corresponds to a subsequence of length $t$ and the log-likelihood of each sub-sequence is the heuristic that guides search. 
+
+In addition to the beam width $w$, the high-dimensional variant of the beam-search algorithm outlined in \cite{boulanger2013high} requires an additional parameter, the branching factor $K$. When using complex distribution estimators like the NADE, deterministically enumerating all possible configurations in order of decreasing probability is intractable. In such situations, the algorithm proceeds by making a pool of the top $K$ candidate solutions by sampling. Random sampling from the conditional distribution of the language model is slow and inefficient and limits the size of the beam width during search. 
+
+%We propose using a modified version of the high-dimensional variant of beam search used in . The search algorithm in \cite{boulanger2013high} proceeds by forming a pool of the top $K$ predictions by sampling the conditional distribution of the MLM. When using a complex distribution estimator like the NADE, it is not possible to enumerate the top $K$ most likely configurations and stochastic search is the only way to form a pool of top candidates. 
+%This is more efficient than drawing a large number of samples from the language model and then keeping the top $K$. Guiding search based on the predictions of the acoustic model over the language model also avoids the problem of \emph{teacher forcing}, where the language model does not recover from mistakes made early on in prediction. 
+
+%At test time, we would like to find the most likely sequence of labels given the acoustic input:
+
+%$$ z^{*} = \argmax_z P(z|x) $$
+
+\begin{algorithm}
+\caption{High Dimensional Beam Search}
+\begin{algorithmic}
+\State{Find the most likely sequence $z$ given $x$ with a beam width $w$.}
+\State{$q \gets$ min-priority queue}
+\State{$q$.insert$(0,\left\{\right\},lm,am)$}
+\For{$t$ = $1$ to $T$}
+	\State{$q' \gets$ min-priority queue of capacity $w$}
+	\While{$q'$.len() $< w$}
+		\For{$l,s,lm,am$ \textbf{in} $q$}
+			\State{$z' = am$.next\_most\_probable()}
+      \State{$l' = \log P_{lm}(z'|s)P_{am}(z'|x)-\log P(z')$}
+			\State{$lm' \gets lm$ with $z_t := z'$}
+			\State{$am' \gets am$ with $x := x_{t+1}$}
+			\State{$q$.insert($l+l',\left\{ s,z' \right\},lm',am')$}
+		\EndFor
+	\EndWhile
+	\State{$q \gets q'$}
+\EndFor
+\Return{$q.$pop()}
+\end{algorithmic}
+\end{algorithm}
+
+
+Instead of pooling the top $K$ configurations by drawing samples from the language model at each time step, we propose using the acoustic model to enumerate the most likely predictions. The motivation for doing so is twofold. Firstly, using the most likely solutions from the acoustic model to direct search avoids cases where the language model makes mistakes early on in a sequence and can never recover from them. Secondly, the outputs of the acoustic classifier are independent of each other. Enumerating the most likely solutions with a DP algorithm is more efficient than stochastic sampling \cite{boulanger2013high}. Unlike \cite{boulanger2013high}, the high-dimensional beam search algorithm outlined in algorithm 1 does not require the branching factor $K$ to be specified in advance and allows the use of much larger beam widths.
+% References should be produced using the bibtex program from suitable
+% BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
+% style file from IEEE produces unsorted bibliography list.
+% -------------------------------------------------------------------------
+%\bibliographystyle{plain}
+%\bibliography{refs}
+
+\section{Experiments}
+\subsection{Acoustic Modelling}
+
+We experiment with using 3 different neural network architectures for learning relevant features from spectrogram inputs. Firstly, we use a deep, feed-forward neural network (DNN) as the acoustic classifier. DNNs currently form the state of the art for acoustic modelling in speech \cite{hinton2012deep} and have been successfully applied to music transcription in the past \cite{nam2011classification}. The ability of DNNs to learn a hierarchy of increasingly complex features makes them an ideal choice for acoustic modelling. 
+
+Despite being powerful frame-level classifiers, DNN outputs are often noisy because they do not account for dependencies between input frames. In order to avoid this issue, we also experiment with using an RNN acoustic model. DNNs base their predictions upon a single frame of input, while the predictions of an RNN at time $t$ are conditioned on all frames for time $\tau < t$. Previous work on using RNNs as acoustic models for transcription demonstrates that RNNs are very good at predicting note-onsets \cite{bock2012polyphonic}. We use the stacked RNN architecture, where several recurrent hidden layers are stacked in order to encourage each recurrent layer to operate at a different timescale \cite{schmidhuber1992learning}. One limitation of the using the RNN as the acoustic model is that it violates the independence assumption made in equation \ref{independence}. The RNN predictions at $t$ are conditioned on all past inputs for $\tau < t$ through the hidden layers. Since the language model and the acoustic model are trained separately, combining their predictions leads to certain factors being counted twice. Although in theory, this makes it hard to use RNN acoustic models, in our experiments we discovered that this difficulty does not affect performance. 
+
+Finally, we experiment with using the features learnt by a DNN as inputs to an RNN. The motivation for doing this is that the features learnt by the DNN are believed to disentangle the factors of variation present in the inputs \cite{goodfellow2009measuring}. It is easier for the RNN to discover relationships between frames of disentangled features as compared to the original spectrogram inputs. We use the activations of the hidden units of all the layers of a DNN as input features to a stacked RNN. 
+\subsection{Language Modelling}
+
+As mentioned in section 2, the RNN can be used as a generative model to define distributions over sequences. Unlike speech recognition, where the language model computes a multinomial distribution over a discrete set of phoneme labels, the MLM has to compute distributions over high-dimensional binary vectors. In order to capture the interactions between the output variables at each time-step, we prefer to use the RNN-NADE over the RNN as the MLM. At each step, the conditional NADE defines a joint distribution over the space of high-dimensional binary output vectors. At test time, the conditional NADE at time $t$ provides the likelihood of observing the vectors predicted by the acoustic model, conditioned on all the predictions so far.  
+%These conditional distributions are then used to provide estimates for the likelihood of the sequence based on the predictions of the acoustic model. 
+%We prefer to use the RNN-NADE as a language model since it can capture interactions between the output variables unlike the RNN. Another reason for choosing the RNN-NADE is that it is tractable to obtain probabilities from the conditional NADE models, unlike the RBM where getting exact probabilities is intractable. 
+\subsection{Experimental Setup}
+We perform experiments on the MAPS dataset \cite{emiya2010multipitch} to test the performance of the hybrid architecture and compare its performance to other models. The MAPS dataset consists of 270 pieces of music. 210 of these are rendered by software synthesisers, while 60 are played on real pianos. For our experiments, we randomly select 200 tracks for training, 20 for validation and 50 for testing\footnote{Training/testing data info at: www.eecs.qmul.ac.uk/~sss31/}. We use the entire length of the training and validation tracks and use the first 30 seconds of the tracks for testing. Pre-processing the data consisted of downsampling the tracks to $16$ KHz and calculating the magnitude spectrogram. Spectrograms were computed with a window size of $64$ ms and a hop size of $32$ ms for the training and validation tracks. For the test tracks, spectrograms were computed every $10$ ms. The spectrograms were further preprocessed by subtracting the mean and dividing by the standard deviation of each frequency bin, calculated over the training set. 
+
+\subsection{Training}
+
+\begin{table*}[htpb]
+\begin{center}
+%\scalebox{0.8}{
+  \begin{tabular}{|c| c  c | c  c | c  c | c c|}
+    \hline
+    Post Processing& \multicolumn{2}{|c|}{None}&\multicolumn{2}{c|}{Thresholding}&\multicolumn{2}{c|}{HMM}&\multicolumn{2}{c|}{Hybrid Architecture}\\ \hline
+    Acoustic Model& Frame & Note & Frame & Note & Frame & Note & Frame & Note \\ \hline
+    DNN & 66.33 & 56.09 & 67.95 &59.58 &68.16 & 62.5 & 69.25 & 62.9 \\ \hline
+    RNN & 66.83 & 61.48 & 67.92 & 62.4 & 62.35 & 65.36 &68.24 & \textbf{67.4} \\ \hline
+    DNN + RNN & 68.83 &62.41 &69.3 &61.35 & 55.38 & 56.32 & \textbf{69.62} &64.69 \\ \hline
+    % &1 & 75.0$\pm$1.3 & 75.0$\pm$1.4 &71.8$\pm$0.2   &75.0$\pm$1.7 & 76.5$\pm$1.5 &78.5$\pm$2.1\\ 
+    % 50&2 & 75.4$\pm$1.2 & 77.5$\pm$2.2 &74.3$\pm$2.5  & 79.6$\pm$2.7& 77.0$\pm$2.2 &80.0$\pm$2.6\\ 
+    % &3 & 78.3$\pm$1.1 & 77.0$\pm$1.2&77.8$\pm$0.7    &81.3$\pm$1.8& 78.0$\pm$1.0 &80.8$\pm$1.1\\ 
+    % &All & 79.0$\pm$2.0 & 78.0$\pm$1.6&77.2$\pm$1.0   & 81.5$\pm$1.9& 81.5$\pm$1.7 &\textbf{82.1$\pm$1.7}\\ \hline
+    % &1 & 72.7 $\pm$2.8 & 73.5$\pm$1.9&65.6$\pm$1.6    &71.8$\pm$0.7& 75.5$\pm$1.1 &67.8$\pm$1.5\\ 
+    % 500&2 & 78.5$\pm$1.9 & 78.5$\pm$2.9&70.5$\pm$1.2    &79.5$\pm$1.9& 82.5$\pm$1.8 &74.0$\pm$2.6\\ 
+    % &3 & 80.5$\pm$1.4 & 79.5$\pm$2.6&73.8$\pm$0.3      &83.0$\pm$1.2& 82.0$\pm$1.4 &77.1$\pm$2.36\\ 
+    % &All & 79.0$\pm$1.4 & 80.5$\pm$1.8&71.6$\pm$1.5    &82.5$\pm$2.3 & \textbf{83.0$\pm$1.1}  &76.0$\pm$1.0\\ \hline
+  \end{tabular}%}
+\end{center}
+\vspace{-1.8em}\caption{Transcription results}
+\end{table*}
+
+The acoustic and language models were trained by gradient descent, according to equations \ref{train_1} and \ref{train_2}. The output layers of both the DNN and RNN acoustic models consisted of sigmoid units. The outputs of the acoustic classifiers can be interpreted as the independent probability of a pitch being present in that frame. 
+The acoustic classifiers were trained by minimising a cross entropy cost, since the target vectors for all frames are high-dimensional binary vectors. For both DNN and RNN models, 
+\begin{table}[htbp]
+\scalebox{0.8}{
+\begin{tabular}{|c|c c|c c|c c|}
+ \hline 
+&\multicolumn{2}{|c|}{Precision} &\multicolumn{2}{|c|}{Recall}&\multicolumn{2}{|c|}{Accuracy} \\ \hline
+&Frame&Note&Frame&Note&Frame&Note \\ \hline
+DNN & \textbf{66.61} &61.37 &72.12&64.52&52.97&45.88 \\ \hline
+RNN & 62.41 &\textbf{66.25} &75.28&\textbf{68.6}&51.79&\textbf{50.83} \\ \hline
+DNN+RNN & 63.18 &65.57 &\textbf{77.51}&63.84&\textbf{53.39}&47.81 \\ \hline
+\end{tabular}
+}
+\caption{More results}
+\end{table}
+weights were randomly initialised by sampling values from a Gaussian distribution with $0$ mean and $0.01$ standard deviation. We also used a momentum of $0.9$ while updating the weights. The DNN models were trained on independent frames of spectrograms extracted from the training set. For training the stacked RNN models, the training tracks were further divided into sub-sequences of length 200 and the models were trained by Back-Propagation Through Time (BPTT) . The RNN-NADE language models were trained on the ground truth MIDI data associated with the training data. The RNN-NADE models were optimised with Hessian Free (HF) optimisation. 
+
+
+
+
+\section{Results}
+In table 1, we present F-measures for the different systems evaluated using different combinations of acoustic models and post-processing. We report F-measures for both frame-based and note onset based evaluation metrics \cite{bay2009evaluation}. The best DNN acoustic model consists of $3$ layers with $100$ units each. The RNN acoustic models have two stacked hidden layers with $250$ hidden units each. For language modelling, the conditional NADEs have $150$ hidden units and the RNN has $100$ hidden units. Four types of post-processing are considered in the experiments. No post processing, where the most likely outputs from the classifiers are chosen; learning independent thresholds for each classifier output based on the training set; HMM post processing assuming each pitch-class is independent; and finally the hybrid architecture with a beam width $w = 100$. The post processing also includes minimum duration pruning ($70$ ms) to improve note-onset accuracy. 
+
+From Table 1 it is clear that the hybrid architecture consistently outperforms other methods. The best F-measure on both frame-based and note-onset based metrics are achieved by the hybrid architecture. The note-onset based F-measure is comparable to the frame-based F-measure which demonstrates the ability of the model to accurately identify note onsets. Beam search post-processing leads to a $3\%$ increase in frame-based F-measure for the DNN and a $6\%$ increase in note-onset F-measure over greedy search ($w = 1$). The RNN acoustic models are better at accurately predicting note-onsets because they implicitly perform temporal smoothing. In our experiments we discovered that the noisy DNN outputs can be post-processed with a median filter to smooth the predictions. The relative improvement in performance when using the hybrid architecture is maximum for the DNN acoustic models. This is probably due to the fact that they do not violate the independence assumption in equation \ref{independence}. Table 2 shows some additional frame-based metrics for the 3 hybrid models that perform best. It is clear that most of the errors are due to missed note onsets, which can be attributed to the error in accurately modelling note durations. However this error is not unique to this particular system and persists even in the ground truth transcriptions. The beam search takes 20 hours on a CPU to decode the first 30 seconds of all the test tracks. 
+
+\section{Conclusion}
+
+We present a new architecture for including symbolic priors to an automatic music transcription system. The architecture combines acoustic and symbolic predictions in a principled manner and we propose an efficient algorithm for inference. The model generalises the popular technique of using independent HMMs to smooth the predictions of acoustic classifiers. Evaluation on the MAPS dataset suggests that the model outperforms current state-of-the-art music transcription systems. In the future, we would like to work on improving the individual components of the architecture, namely the acoustic and language modelling. We would also like to investigate ways to improve beam search to make it feasible for real-time applications. 
+%It is clear that the hybrid architecture ($w=100$) consistently performs better than the all other forms of post processing. It should be noted that the combined model yields comparable accuracies on both frame-based and note-based evaluation metrics . The RNN acoustic models perform well despite violating the independence assumptions.  We observe that both frame-based and note-based F-measures are improved when using the hybrid architecture. The note-based transcription accuracies are much better when using RNN acoustic models. However there is a significant improvement when using the hybrid architecture. The hybrid architecture is responsible for an increase in some n percent in F-measure over greedy search. The relative improvement in accuracies is more for the DNN than the RNN. This is because the RNNs violate the independence assumption. 
+
+%The RNN models perform better than the DNN models on note-based metrics because they implicitly perform some smoothing on their output predictions, while the DNN operates independently on each frame. We were able to rectify this by simple median filtering the DNN outputs to achieve note-based results comparable to the RNNs. 
+
+
+
+
+\newpage
+\bibliography{biblio}{}
+\bibliographystyle{plain}
+\end{document}
+ 

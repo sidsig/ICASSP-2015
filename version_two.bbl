@@ -1,0 +1,147 @@
+\begin{thebibliography}{10}
+
+\bibitem{ismir2004}
+{ISMIR 2004: Audio Description Contest}.
+\newblock {http://ismir2004.net/genre\_contest/}, 2004.
+
+\bibitem{bengio1994learning}
+Yoshua Bengio, Patrice Simard, and Paolo Frasconi.
+\newblock Learning long-term dependencies with gradient descent is difficult.
+\newblock {\em IEEE Transactions on Neural Networks}, 5(2):157--166, 1994.
+
+\bibitem{bergstra+al:2010-scipy}
+James Bergstra, Olivier Breuleux, Fr{\'{e}}d{\'{e}}ric Bastien, Pascal Lamblin,
+  Razvan Pascanu, Guillaume Desjardins, Joseph Turian, David Warde-Farley, and
+  Yoshua Bengio.
+\newblock Theano: a {CPU} and {GPU} math expression compiler.
+\newblock In {\em Proceedings of the Python for Scientific Computing Conference
+  ({SciPy})}, June 2010.
+\newblock Oral Presentation.
+
+\bibitem{bergstra2006aggregate}
+James Bergstra, Norman Casagrande, Dumitru Erhan, Douglas Eck, and Bal{\'a}zs
+  K{\'e}gl.
+\newblock Aggregate features and {AdaBoost} for music classification.
+\newblock {\em Machine Learning}, 65(2-3):473--484, 2006.
+
+\bibitem{bergstra2010scalable}
+James Bergstra, Michael~I Mandel, and Douglas Eck.
+\newblock Scalable genre and tag prediction with spectral covariance.
+\newblock In {\em ISMIR}, pages 507--512, 2010.
+
+\bibitem{bishop1995neural}
+Christopher~M Bishop.
+\newblock {\em Neural networks for pattern recognition}.
+\newblock Oxford university press, 1995.
+
+\bibitem{dahl2013improving}
+George~E Dahl, Tara~N Sainath, and Geoffrey~E Hinton.
+\newblock Improving deep neural networks for {LVCSR} using rectified linear
+  units and dropout.
+\newblock In {\em Proc. ICASSP}, 2013.
+
+\bibitem{glorot2010understanding}
+Xavier Glorot and Yoshua Bengio.
+\newblock Understanding the difficulty of training deep feedforward neural
+  networks.
+\newblock In {\em International Conference on Artificial Intelligence and
+  Statistics}, pages 249--256, 2010.
+
+\bibitem{glorot2011deep}
+Xavier Glorot, Antoine Bordes, and Yoshua Bengio.
+\newblock Deep sparse rectifier networks.
+\newblock In {\em Proceedings of the 14th International Conference on
+  Artificial Intelligence and Statistics. JMLR W\&CP Volume}, volume~15, pages
+  315--323, 2011.
+
+\bibitem{hamel2010learning}
+Philippe Hamel and Douglas Eck.
+\newblock Learning features from music audio with deep belief networks.
+\newblock In {\em ISMIR}, pages 339--344. Utrecht, The Netherlands, 2010.
+
+\bibitem{hamel2011temporal}
+Philippe Hamel, Simon Lemieux, Yoshua Bengio, and Douglas Eck.
+\newblock Temporal pooling and multiscale learning for automatic annotation and
+  ranking of music audio.
+\newblock In {\em ISMIR}, pages 729--734, 2011.
+
+\bibitem{henaff2011unsupervised}
+Mikael Henaff, Kevin Jarrett, Koray Kavukcuoglu, and Yann LeCun.
+\newblock Unsupervised learning of sparse features for scalable audio
+  classification.
+\newblock In {\em ISMIR}, pages 681--686, 2011.
+
+\bibitem{hinton2006fast}
+Geoffrey~E Hinton, Simon Osindero, and Yee-Whye Teh.
+\newblock A fast learning algorithm for deep belief nets.
+\newblock {\em Neural computation}, 18(7):1527--1554, 2006.
+
+\bibitem{hinton2012improving}
+Geoffrey~E Hinton, Nitish Srivastava, Alex Krizhevsky, Ilya Sutskever, and
+  Ruslan~R Salakhutdinov.
+\newblock Improving neural networks by preventing co-adaptation of feature
+  detectors.
+\newblock Technical report, University of Toronto, 2012.
+
+\bibitem{humphrey2013feature}
+Eric~J Humphrey, Juan~P Bello, and Yann LeCun.
+\newblock Feature learning and deep architectures: new directions for music
+  informatics.
+\newblock {\em Journal of Intelligent Information Systems}, 41:1--21, 2013.
+
+\bibitem{krizhevsky2012imagenet}
+Alex Krizhevsky, Ilya Sutskever, and Geoff Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In {\em Advances in Neural Information Processing Systems 25}, pages
+  1106--1114, 2012.
+
+\bibitem{lee2009convolutional}
+Honglak Lee, Roger Grosse, Rajesh Ranganath, and Andrew~Y Ng.
+\newblock Convolutional deep belief networks for scalable unsupervised learning
+  of hierarchical representations.
+\newblock In {\em Proceedings of the 26th Annual International Conference on
+  Machine Learning}, pages 609--616. ACM, 2009.
+
+\bibitem{martens2010deep}
+James Martens.
+\newblock Deep learning via {Hessian-Free} optimization.
+\newblock In {\em Proc. ICML}, pages 735--742, 2010.
+
+\bibitem{martens2011learning}
+James Martens and Ilya Sutskever.
+\newblock Learning recurrent neural networks with hessian-free optimization.
+\newblock In {\em Proc. ICML}, pages 1033--1040, 2011.
+
+\bibitem{nair2010rectified}
+Vinod Nair and Geoffrey~E Hinton.
+\newblock Rectified linear units improve restricted boltzmann machines.
+\newblock In {\em Proceedings of the 27th International Conference on Machine
+  Learning (ICML-10)}, pages 807--814, 2010.
+
+\bibitem{silla2010improving}
+Carlos~N Silla~Jr, Alessandro~L Koerich, and Celso~AA Kaestner.
+\newblock Improving automatic music genre classification with hybrid
+  content-based feature vectors.
+\newblock In {\em Proceedings of the 2010 ACM Symposium on Applied Computing},
+  pages 1702--1707. ACM, 2010.
+
+\bibitem{Sturm:2012:AGM:2390848.2390851}
+Bob~L. Sturm.
+\newblock An analysis of the {GTZAN} music genre dataset.
+\newblock In {\em Proceedings of the second international {ACM} workshop on
+  {Music Information Retrieval} with user-centered and multimodal strategies},
+  MIRUM '12, pages 7--12, New York, NY, USA, 2012. ACM.
+
+\bibitem{tangdeep}
+Yichuan Tang.
+\newblock Deep learning using linear support vector machines.
+\newblock In {\em Workshop on Representation Learning, ICML, 2013, Atlanta,
+  USA}, 2013.
+
+\bibitem{tzanetakis2002musical}
+George Tzanetakis and Perry Cook.
+\newblock Musical genre classification of audio signals.
+\newblock {\em IEEE Transactions on Speech and Audio Processing},
+  10(5):293--302, 2002.
+
+\end{thebibliography}

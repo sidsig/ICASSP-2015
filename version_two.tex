@@ -1,0 +1,245 @@
+% Template for ICASSP-2013 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,graphicx,comment,amssymb,float}
+%\usepackage[pdftex]{graphicx}
+
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+
+% Title.
+% ------
+\title{IMPROVED MUSIC FEATURE LEARNING WITH DEEP NEURAL NETWORKS}
+%
+% Single address.
+% ---------------
+%\name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
+%\address{Author Affiliation(s)}
+%
+% For example:
+% ------------
+%\address{School\\
+%   Department\\
+%   Address}
+%
+% Two addresses (uncomment and modify for two-address case).
+% ----------------------------------------------------------
+% \oneauthor
+%   {Siddharth Sigtia,Simon Dixon}
+%    {Queen Mary University of London\\
+%   Centre for Digital Music\\
+%   Mile End Road, London E1 4NS, UK}
+%   {Simon Dixon}
+%    {Queen Mary University of London\\
+%    Centre for Digital Music\\
+%    Mile End Road, London E1 4NS, UK}
+%
+
+\name{Siddharth Sigtia, Simon Dixon}
+\address{Queen Mary University of London\\
+   Centre for Digital Music\\
+   Mile End Road, London E1 4NS, UK}
+
+
+\begin{document}
+%\ninept
+%
+\maketitle
+%
+\begin{abstract}
+Recent advances in neural network training provide a way to efficiently learn representations from raw data. Good representations are an important requirement for Music Information Retrieval (MIR) tasks to be performed successfully. However, a major problem with neural networks is that training time becomes prohibitive for very large datasets and the learning algorithm can get stuck in local minima for very deep and wide network architectures. In this paper we examine 3 ways to improve feature learning for audio data using neural networks: 1.using Rectified Linear Units (ReLUs) instead of standard sigmoid units; 2.using a powerful regularisation technique called Dropout; 3.using Hessian-Free (HF) optimisation to improve training of sigmoid nets. We show that these methods provide significant improvements in training time and the features learnt are better than state of the art hand-crafted features, with a genre classification accuracy of 83 $\pm$ 1.1\% on the Tzanetakis (GTZAN) dataset. We found that the rectifier networks learnt better features than the sigmoid networks. We also demonstrate the capacity of the features to capture relevant information from audio data by applying them to genre classification on the ISMIR 2004 dataset. 
+
+\end{abstract}
+%
+\begin{keywords}
+Deep Learning, Neural Networks, MIR. 
+\end{keywords}
+%
+\section{Introduction}
+\label{sec:intro} 
+
+%Most music signal processing systems use a common two-stage signal processing framework of feature extraction followed by semantic interpretation. 
+Most MIR classification tasks use a common pipeline which consists of feature extraction followed by classification. This pipeline assumes that the features capture all the relevant information for a particular task. The features that are extracted are often ``hand-crafted", a process that requires significant domain knowledge and engineering ingenuity. Recently, the slow progress in improving the accuracy of MIR tasks has been attributed to the use of hand-engineered features \cite{humphrey2013feature} and there have been several studies that explore feature learning for music audio data \cite{lee2009convolutional,hamel2010learning,henaff2011unsupervised}. 
+
+Stochastic Gradient Descent (SGD) has been used for training neural networks for the last 25 years. Although it has many advantages like ease of implementation and good convergence, there are also several drawbacks. One of the drawbacks is that the algorithm does not scale very well to large datasets. The algorithm can go through hundreds of thousands of iterations to converge to acceptable solutions on large datasets. SGD can also underfit the data if the network is very deep, a problem that had plagued training of deep neural networks up until the recent use of layer-wise unsupervised pre-training \cite{hinton2006fast}. 
+
+Recently, it has been found that the performance of SGD can be improved by using Rectified Linear Units (ReLUs) \cite{nair2010rectified,glorot2011deep}. These rectifier networks converge to similar and sometimes better solutions than the traditional sigmoid nets. In this study, we evaluate using ReLUs and directly training the network with SGD, without any unsupervised pre-training. However, ReLUs tend to overfit the data at times. Dropout is a powerful regularisation technique that helps reduce the generalization error \cite{hinton2012improving}. Rectifier networks when combined with Dropout are known to generalize well. 
+
+%Optimizing these rectifier networks is easier and good solutions can be found from randomly initialized weights, eliminating the need for pre-training.
+%Recently, a very powerful regularisation technique has been discovered called Dropout. Dropout has been shown to improve the generalization error of neural networks on unseen data on several vision and speech tasks. Dropout is especially useful while using rectifier networks because they often overfit the data, giving poor performance on the held-out test set. However one drawback of using Dropout is that it increases the training time for the networks, since the data needs to be presented to the training algorithm more times. 
+
+%One problem that has been particularly difficult to solve has been the problem of "vanishing gradients". In very deep neural networks, or recurrent neural networks that are deep in time, the gradient keeps diminishing as it is passes through more non-linearities. This is one of the primary reasons that recurrent neural networks have not enjoyed much success up until very recently. Using second-order optimisation techniques like Hessian-Free optimisation, it has become possible to successfully train very deep and recurrent neural networks. Apart from solving the vanishing gradient problem, optimisation techniques help reduce the number of hyper-parameters that need to be tuned for training to be successful. SGD generally has a number of associated hyperparameters like learning rate schedules, regularisation, different learning rates for different parameters/layers. This adds a search in hyper-parameter space to the already expensive SGD. However optimizers like Hessian-Free alleviate this issue. 
+
+
+%Our aim is to learn features from the audio data and evaluate the features by applying them to a genre classification task. Previous work\cite{bergstra2006aggregate,hamel2010learning} shows that aggregating audio features over time improves the performance of classifiers. One issue with using the activations of rectifier networks as features is that they produce naturally sparse representations which are hard to summarize over longer periods of time. Operations that try to summarize frames of features over times break the sparsity which leads to poorer performance. In order to produce features can be easily summarized we also explore using Hessian Free optimisation to improve the efficiency of training sigmoid neural nets and compare the features produced by the two methods. 
+% However SGD for sigmoid nets is inadequate for very large networks and training time is prohibitively large. In this paper we explore using HF optimisation over SGD to train deep sigmoid networks and then compare the two kinds of learnt features. HF is a second order optimisation technique that also takes into account the curvature of the objective function. It is also significantly quicker during training because it works with very large batches of data, and therefore converges in a fraction of the iterations required by SGD. 
+
+
+It would be interesting to be able to compare the features learnt by rectifier nets to the features learnt by sigmoid nets. However, deep sigmoid networks are harder to optimize with SGD because of the non-linearity of the objective with respect to the parameters. SGD also takes a very large number of iterations to train sigmoid nets, making training time prohibitively large \cite{hamel2010learning}. Recently, Martens proposed a powerful new method for training neural networks, called Hessian Free (HF) optimisation \cite{martens2010deep}. HF is a second order optimisation technique that has proved to be very effective for training deep and recurrent neural networks \cite{martens2011learning}. HF also offers other practical advantages like significant reduction in the number of hyper-parameters and a substantial reduction in training time. 
+
+%In this paper, we compare the features learnt by sigmoid nets and ReLU nets. We use the Tzanetakis dataset for learning features. We show that the ReLUs significantly reduce the training time and produce features that are comparable to the ones produced by sigmoid nets. We also use Hessian Free optimisation to learn sigmoid nets with the same architecture as the ReLU nets and compare their performance. We find that HF is much quicker at training deep sigmoid nets and the solutions are comparable to SGD if not better. We then apply the learnt features on a classification task on the ISMIR 2004 genre dataset and show that they produce accuracies comparable to state-of-the-art hand crafted features. 
+
+
+In this paper we learn features from audio data from the GTZAN dataset using both sigmoid and rectifier neural networks. We show that SGD can be used to train ReLU nets efficiently. We also use Hessian Free optimisation to train sigmoid nets and compare their performance with rectifier networks. We find that HF is very efficient for training sigmoid networks and provides good solutions with a significant reduction in training time as compared to SGD. We also find that the rectifier nets with Dropout performed better than the sigmoid nets. We then apply the two types of learnt features to a genre classification problem on the ISMIR 2004 dataset and show that the learnt features perform better than hand-crafted features. 
+
+The rest of the paper is organized as follows. In section 2 we describe ReLUs, Dropout and HF. Section 3 describes the details of the experimental setup and the results. Finally, conclusions and ideas for future work are presented in section 4. 
+
+%In this paper we evaluate the benefits of using the above techniques for training neural nets to learn features from audio data. We empirically demonstrate that ReLUs and Dropout improve the performance of SGD and the networks converge to similar values as with Sigmoid units. We also use Hessian-Free optimisation for learning features and we show that the algorithm converges much faster compared to SGD and the alleviates the issue of tuning a large number of hyperparameters. 
+%deep feed forward nets or recurrent neural nets, which are deep in time. The reason for this is that the error gradient that is propagated backward diminishes with each layer. This is a well studied phenomenon and was one of the primary reasons recurrent nets and very deep nets were impractical to use. 
+
+%Neural Networks are powerful models for learning features. The parametric basis functions are learnt by minimizing an error criterion on a training set of labeled data. By increasing the number of hidden layers or the \textit{depth} of the network, the amount of non-linearity between the input and top layer increases. This allows neural networks to model extremely complex relationships between input data and the corresponding targets. The advantage of doing this is that the neural network discovers good features from the data, eliminating the need for the feature engineering step. 
+
+%Although, deep neural networks can theoretically model very complex relations between data and targets, training them is not very easy. This led to a decline in the use of neural networks for solving machine learning problems in the 90s. Deep Neural networks regained popularity with the introduction of Deep Belief Networks \cite{hinton2006fast} and the idea of unsupervised pre-training \cite{bengio2007greedy,poultney2006efficient}. They have been very successful in several domains and currently form the state of the art in computer vision, speech and natural language processing for several tasks. Apart from the developments in training and optimisation techniques, the availability of more computing power especially using GPUs for processing has also led to their widespread use. 
+
+%Recent work in the domain of speech and vision using Rectified Linear Units (ReLUs) shows that ReLUs have several advantages over other units. 1. They converge to the same or sometimes better minimas than logistic units. 2. Training time is much lesser since the derivatives of ReLUs are much simpler to compute. 3. The representations learnt in the hidden layers are truly sparse because of the nature of the non-linearity. Sparse representations are considered better for various reasons including better generalizations etc. etc., look at the Bengio reference. Another important development in the field has been the realization that unsupervised pre-training is not necessary if the labeled dataset is large. This reduces the training time by avoiding the need for unsupervised feature learning using any one of the popular methods such as RBMs, AutoEncoders, k-means or PSD. 
+
+
+%In the past, there have been some attempts to use Deep Neural Networks for discovering features from audio data. Hamel et. al use a Deep Neural Network with pre-training to learn features for a genre recognition and auto-tagging task. Dieleman et al. use a CNN to learn and classify data from the Million Song Database. Lee et. al. use CNNs to learn features on the ISMIR 2004 dataset. 
+
+%This contributions of this paper include an experimental evaluation of the use of ReLU units for learning features using a neural net and achieve better performance than the previous system using sigmoid activations. We show that the network converges to a minimum without the need for any pre-training. We also demonstrate that the neural net converges to better minima with the use of Nesterov's accelerated gradient method. We also try to find if the networks generalize better with dropout. We then take the transformations trained on the GTZAN dataset and apply it to the ISMIR 2004 dataset. We experimentally demonstrate that the learnt features perform better than most of the standard features used in MIR literature.
+\vspace{-1.5em}
+
+\section{Background}
+\subsection{Rectified Linear Units}
+\label{sec:format}
+
+%Advantages of ReLU. 1. No vanishing gradient, see Ng paper for explanation. 2. Easier optimisation. 3. Hard sparsity, since the unit is cutoff at 0, therefore potentially advantageous since hidden units are inputs to a classifier. 
+
+Recently, there has been a large amount of evidence demonstrating the advantages of using ReLUs over the traditional sigmoid units \cite{nair2010rectified,glorot2011deep}. These advantages include good convergence without the need for any pre-training, naturally sparse features in the hidden layers \cite{glorot2011deep} and overcoming the problem of vanishing gradients \cite{glorot2010understanding,bengio1994learning}. The ReLU activation function is defined as $f(x) = max(0,x)$. Unlike sigmoid units, ReLUs do not saturate at $1$ and the partial derivative of the activation function with respect to the model parameters is never $0$, provided the neuron is active. The hidden layer activations of ReLU nets have a hard sparsity, since the units cut off below $0$. This is useful if the hidden unit activations are used as features. Neural nets with ReLUs as hidden units can reach the same error level on the training set much faster than sigmoid nets \cite{krizhevsky2012imagenet}. This is advantageous since it allows experimentation with much larger network architectures, which would not be possible using sigmoid nets trained with SGD. 
+
+%One of the main advantages of ReLUs is that they they are easier to optimize and therefore there is no need for a layer-wise unsupervised pre-training stage to initialize the weights \cite{glorot2011deep}. ReLUs also avoid the problem of vanishing gradients \cite{glorot2010understanding,bengio1994learning}.
+
+
+%Traditionally neural networks have used the sigmoid function $f(x) = \frac{1}{1 + {e}^{-x}} $ to model the activation of a neuron. However recently, activations called Rectified Linear Units (ReLUs), of the type $f(x) = max(0,x)$ have been used in place of sigmoid units. It can be shown\cite{nair2010rectified} that the rectifier activation approximates an infinite set of sigmoid units with tied weights and shifted biases. Each ReLU can express more information than a binary unit in an RBM and the authors in \cite{nair2010rectified} show that both pre-trained and randomly initialized rectifier networks perform better than sigmoid networks. In \cite{glorot2011deep}, the authors argue that the theoretical advantages of using ReLUs go beyond the information modeling capacity of each unit. One of the main issues observed with the training of deep neural networks was that of the vanishing gradient \cite{glorot2010understanding}. This occurs when the sigmoid units in the network saturate, thus preventing the error gradients to flow backwards through the network and thus slowing down training. ReLUs do not suffer from this because they are linear on the positive axis. The outputs of each unit are linear in their inputs and therefore computations are cheaper. 
+
+ %The unbounded nature of the activations raises issues if we use the activations directly. Therefore we try several normalization techniques to try and mitigate the problem. 
+\vspace{-0.5em}
+\subsection{Dropout}
+\label{sec:page} 
+
+Although ReLUs have several properties that make them desirable as hidden units for deep neural nets, they tend to overfit the training data. Overfitting is a common problem with networks of large capacity and is generally solved by using various regularisation techniques \cite{bishop1995neural}. Dropout is a regularisation technique which was introduced in \cite{hinton2012improving}. Dropout when used with ReLUs reduces the problem of overfitting to the training data. 
+
+Dropout adds noise to the network during training by \textit{dropping out} or removing a predetermined percentage of activations in each layer. The units that are dropped out are chosen at random. Therefore training a network with dropout is the same as training an ensemble of ``thinned"or sub-sampled neural networks that share parameters. There are two ways of interpreting the way dropout modifies training. The first one is that Dropout avoids complex co-adaptations of the features to the training data. The second interpretation of Dropout is that it is similar to model averaging. Our implementation of Dropout follows the details outlined in \cite{dahl2013improving}.
+
+%In our experiments we apply Dropout to all hidden layers. We also investigate the effects of applying it to the the input layer, similar to a denoising auto-encoder. The training procedure needs to be modified slightly when using Dropout. The net inputs to each layer are multiplied by a factor of $\frac{1}{1-r}$ where $r$ is the dropout rate for the previous layer, in order to account for the missing units \cite{dahl2013improving}. 
+
+\subsection{Hessian Free optimisation}
+
+Sigmoid nets are hard to train with SGD because the error surface defined by the loss function is very complex due to the sigmoid non-linearities at each layer. This problem becomes worse as the depth of the network increases. Greater depth also leads to issues like vanishing gradients due to the saturation of the sigmoid function. There have been attempts to fix this by using different learning rates for different layers, adaptive schedules for the learning rate and momentum. However for sufficiently deep networks SGD proves to be inadequate. Hessian Free (HF) optimisation is a second order optimisation technique that aims to minimize an objective function $f(\theta)$ with respect to the parameters $\theta$. The algorithm iteratively updates the parameters at every step by optimizing a local approximation to the objective. More specifically, the local approximation to the objective function at some iteration $n$ is defined as:
+\begin{equation}
+\label{martens}
+M_{\theta_n} = f(\theta_n) + f^{\prime}(\theta_n)^{\intercal}\delta_n + \delta_n^{\intercal} B \delta_n / 2 
+\end{equation}
+In equation \ref{martens}, $B$ is the Gauss-Newton matrix which is used instead of the Hessian and $\delta_{n} $ are the search directions for updating the parameters $\theta_{n}$. Although Hessian Free methods have existed in literature and have been studied for a long time, they were grossly impractical for applications to machine learning problems until recently. In \cite{martens2010deep}, Martens makes several modifications to the earlier approaches and develops a version of Hessian Free that can be applied effectively to train very deep networks. HF uses the method of Conjugate Gradients (CG) to find a solution to equation \ref{martens} at each step. CG is very sensitive to the form of the curvature matrix and small batches of data are ineffective for training. In general, very large batches of data are used for each iteration of HF. Apart from better performance of CG, using large datasets significantly reduces the number of iterations required to train a network. Another advantage of using HF is that it greatly reduces the number of hyper-parameters that need to be tuned for useful solutions. In our experiments, we use HF to train sigmoid nets and compare the performance with rectifier networks. 
+
+%In our case, it would be interesting to use sigmoid nets as features, because the outputs of the sigmoid units are more amenable to feature aggregation. Several authors have shown that aggregating features from an example over time substantially improves classification performance. However ReLUs are not idea for this since their output is unbounded and any kind of averaging or similar operation breaks the hard sparsity of the representations, potentially decreasing the effectiveness of the features. It would also be interesting if there was a way to efficiently train wide and deep sigmoid networks without underfitting.  
+%In \cite{hamel2010learning}, the authors demonstrate that sigmoid nets can be effectively used to learn features from raw audio data. However since the dataset is very large (approximately 1.3 million examples), the algorithm takes very long to converge to an acceptable solution. One advantage of Hessian Free optimisation is that it works on very large batches of data. Generally the entire batch is used to compute the gradient and quite a large subset of the training set is used to compute the curvature matrix. This ensures that the algorithm takes only a fraction of the number of iterations that SGD takes. In our experiments we evaluate using Hessian Free optimisation to accelerate the training of networks with sigmoid units. In applying HF to learn features in our experiments, we use the same modifications proposed by Martens in \cite{martens2010deep}. 
+%Another major problem with using SGD for training very deep neural networks is that of the vanishing gradient\cite{glorot2010understanding}. The gradients tend to decrease as the they propagate back through several layers of non-linearity which leads to the lower layers not learning anything useful. Also due to the large number of non-linear operations the training objectives exhibit pathological curvature. Recently, Martens proposed an efficient second-order learning algorithm\cite{martens2010deep} that can be efficiently applied for the training of deep neural networks. 
+
+\section{Experiments}
+\label{sec:typestyle}
+
+
+\begin{table*}
+\begin{center}
+\scalebox{0.8}{
+  \begin{tabular}{c| c | c | c | c | c | c | c }
+    \hline
+    & \multicolumn{4}{|c|}{No-Aggregation}&\multicolumn{3}{c}{Aggregation}\\ \hline
+    Hidden Units & Layer & ReLU+SGD & ReLU+SGD+Dropout &Sigmoid + HF & ReLU+SGD & ReLU+SGD+Dropout &Sigmoid + HF\\ \hline
+    &1 & 75.0$\pm$1.3 & 75.0$\pm$1.4 &71.8$\pm$0.2   &75.0$\pm$1.7 & 76.5$\pm$1.5 &78.5$\pm$2.1\\ 
+    50&2 & 75.4$\pm$1.2 & 77.5$\pm$2.2 &74.3$\pm$2.5  & 79.6$\pm$2.7& 77.0$\pm$2.2 &80.0$\pm$2.6\\ 
+    &3 & 78.3$\pm$1.1 & 77.0$\pm$1.2&77.8$\pm$0.7    &81.3$\pm$1.8& 78.0$\pm$1.0 &80.8$\pm$1.1\\ 
+    &All & 79.0$\pm$2.0 & 78.0$\pm$1.6&77.2$\pm$1.0   & 81.5$\pm$1.9& 81.5$\pm$1.7 &\textbf{82.1$\pm$1.7}\\ \hline
+    &1 & 72.7 $\pm$2.8 & 73.5$\pm$1.9&65.6$\pm$1.6    &71.8$\pm$0.7& 75.5$\pm$1.1 &67.8$\pm$1.5\\ 
+    500&2 & 78.5$\pm$1.9 & 78.5$\pm$2.9&70.5$\pm$1.2    &79.5$\pm$1.9& 82.5$\pm$1.8 &74.0$\pm$2.6\\ 
+    &3 & 80.5$\pm$1.4 & 79.5$\pm$2.6&73.8$\pm$0.3      &83.0$\pm$1.2& 82.0$\pm$1.4 &77.1$\pm$2.36\\ 
+    &All & 79.0$\pm$1.4 & 80.5$\pm$1.8&71.6$\pm$1.5    &82.5$\pm$2.3 & \textbf{83.0$\pm$1.1}  &76.0$\pm$1.0\\ \hline
+    \hline
+  \end{tabular}}
+\end{center}
+\vspace{-1.8em}\caption{Genre classification results on GTZAN dataset (mean accuracy and standard deviation over 4 splits)}
+\end{table*}
+
+
+In this section we describe the experimental details and the results. Two datasets were used for the experiments, the GTZAN dataset \cite{tzanetakis2002musical} and the ISMIR 2004 Genre dataset \cite{ismir2004}. Although the GTZAN dataset has some shortcomings \cite{Sturm:2012:AGM:2390848.2390851}, it has been used as a benchmark for genre classification tasks. The GTZAN dataset consists of 1000, 30-second examples with 100 examples for each of the 10 genres. The ISMIR 2004 dataset consists of 729 examples over 6 genres for training and 729 songs for development/validation. The tracks from the ISMIR 2004 dataset were down-sampled to 22500 Hz and the first 30 seconds from each song were kept. The GTZAN dataset was split into four 50/25/25 train, validation, test splits. For all experiments with the GTZAN dataset, the training and validation sets were first used to train the neural network. The neural network was then used to extract features from the data and a classifier was trained on the features extracted from the training and validation set. The results were then calculated on the test data. This was repeated for each of the 4 data splits and results are reported over these 4 splits. We then picked the model that performs best on the GTZAN dataset and applied it to a genre classification task on the ISMIR 2004 dataset. 
+
+\vspace{-0.5em}
+\subsection{Training}
+
+We followed a pipeline very similar to the one described in \cite{hamel2010learning}. We calculate FFTs on frames of length 1024 at 22050 kHz sampling rate with an overlap of 50\% and use the absolute value of each FFT frame. The output from each frame is a 513 dimensional vector. Each feature dimension was then normalized to have zero mean and unit standard deviation. Both the rectifier and sigmoid networks had the same architecture so that the features could be compared. We tried a large number of permutations of the number of hidden units, and we quote results on the two architectures that performed best. In the first architecture each hidden layer has 50 units and in the second, each has 500 units. 
+
+When training the rectifier networks with SGD, the output layers consisted of softmax units. The learning rate was tuned by a grid search and no update schedules were used. We found that a learning rate of 0.01 worked best when using ReLUs. The validation set was used to perform early stopping with a patience of 10. For the experiments with Dropout, we applied the same rate to all the hidden layers. We found the optimum dropout rate to be $0.25$ for all the hidden layers. We also experimented with applying dropout to the input layer and found that we got better results when it wasn't applied to the input layer.  We did not apply Dropout to the sigmoid networks because there are no accepted modifications of HF that incorporate Dropout \cite{dahl2013improving}. 
+
+For the experiments with Hessian Free optimisation, the output layer consisted of sigmoid units. We experimented with softmax and sigmoid output layers and found that both produced comparable results. We used the entire training data for the gradient calculation and 25\% of the training data for calculation of the Gauss-Newton matrix. Increasing the number of examples provided to the curvature matrix calculation beyond this did not improve accuracies any further. An initial damping factor of 10 gave the best results on the test dataset. The Conjugate Gradient (CG) step of the algorithm was limited to a maximum of 250 iterations and the number of steps of HF was limited to 200. Apart from this, we follow all of the details of Martens' approach \cite{martens2011learning}.  
+
+We used the Theano \cite{bergstra+al:2010-scipy} python library for training the networks on a GPU. % and scikit-learn library for the classifier \cite{scikit-learn}. 
+
+\vspace{-0.5em}
+\subsection{Classification}
+Our aim is to use neural networks to discover features that can be used for MIR tasks. We used the activations of the hidden layers of the neural networks as features and trained a Random Forest classifier on top of these features to predict the label. Training a separate classifier on the activations is useful since it allows direct comparison with other features. There is also some evidence \cite{tangdeep} that suggests that training a more powerful classifier, as compared to logistic regression, on the top layer of a neural net provides better results. However unlike that paper, the classifier was not trained jointly with the rest of the network. For the ReLU networks, training a separate classifier on the activations is potentially more beneficial because of the hard sparsity present in the hidden layers. We used a Random Forest classifier because the amount of training data is quite large (645,000 training examples) and Random Forest classifiers scale well to large datasets. The classifier was used to predict a label for each frame of a test example, and maximum voting was used to predict the genre for the example. We compare the results of training the classifier on the activations of each hidden layer and on all the hidden layer activations combined.
+%We train a classifier on the activations of each of the hidden layers, and on all the hidden layer activations combined to form one feature. 
+
+\vspace{-0.5em}
+\subsection{Aggregated Features}
+
+Several authors have shown significant improvements in classification accuracy by aggregating features over time \cite{bergstra2006aggregate,hamel2010learning,bergstra2010scalable,tzanetakis2002musical}.
+In our experiments we found that classification accuracy does not vary much over a range of aggregation times between 3 to 6 seconds. We aggregated the features over 5 seconds with an overlap of 2.5 seconds. Each aggregated feature vector was the mean and variance of the features that lie in that 5 second window. 
+
+\subsection{Genre Classification on ISMIR 2004 Dataset}
+
+To evaluate the effectiveness of the features learnt in the previous section, we applied the same features to a genre classification task on the ISMIR 2004 dataset. The motivation behind doing this is to test whether the features are robust to changes in the input distribution and if they capture information that can be used for tasks other than what they were trained for. We aggregated the features over 5 seconds with a 2.5 second overlap and applied them to a genre classification task. We picked the two models that performed best on the GTZAN dataset to extract features from the ISMIR data. The same procedure of classifying aggregated frames, followed by maximum voting was used to classify the test examples. To compare the learnt features with some baseline hand-crafted features, we also repeated the above experiment with MFCC features and Principal Mel-Spectrum Components (PMSC) features \cite{hamel2011temporal}. Previous work \cite{hamel2010learning} applies the features learnt from sigmoid nets to an auto-tagging task, however we could not perform the same experiment due to unavailability of the data.   
+\begin{center}
+\begin{table}
+\scalebox{0.75}{
+  \begin{tabular}{c| c | c | c | c}
+    \hline
+    Hidden Units & Layer & ReLU+SGD & ReLU+SGD+Dropout &Sigmoid + HF\\ \hline
+    &1 & 70.50 & 68.03 &68.72\\ 
+    50&2 & 70.80 & 66.94 &70.23\\ 
+    &3 & 69.13& 68.03 &70.50\\ 
+    &All & 72.42 & 69.68 &71.20\\ \hline
+    &1 & 68.03 & 70.09 &68.40\\ 
+    500&2 & 71.33 & 72.01 &68.32\\ 
+    &3 & 71.46 & 69.41 &70.37\\ 
+    &All & 72.30& \textbf{73.46} &70.23\\ \hline
+    \hline
+  \end{tabular}}
+\caption{Genre classification results on the ISMIR 2004 dataset}
+\vspace{-0.8em}
+\end{table}  
+\end{center}
+
+\vspace{-3em}
+\subsection{Results and discussion}
+
+Table 1 shows the results of genre classification on the GTZAN dataset. We note that the best accuracy is achieved by the rectifier net with dropout and a large number of hidden units. The system classifies the GTZAN data with an accuracy of 83 $\pm$ 1.1\%. These results cannot be directly compared to the results in \cite{hamel2010learning}, because we average results over 4 splits of the dataset. However it can be seen that results are in a similar range. We also compare our results with the results of other methods applied to the GTZAN dataset presented in \cite{henaff2011unsupervised}. MFCC features provide an accuracy of 77\% while a large number of hand-crafted features provide an accuracy of 83\%. We note that our method compares favourably to the current state of the art results on the GTZAN dataset. The major improvement over the system in \cite{hamel2010learning}, is that the network is trained from randomly initialized weights without any pre-training. The number of training epochs that SGD takes to converge is also less than with sigmoid nets. Since we use early stopping, the number of epochs varies with each trial. But on average, the system can converge to good solutions in 200 training epochs (for 50 hidden units per layer) in a training time of about 14 hours (for 200 epochs). Since SGD for rectifier nets converge faster, we were able to train networks with more hidden units which provided better results. We note that Dropout helps improve results when the number of hidden units is large. For the smaller network, the results with Dropout are worse. 
+
+From table 1, the network with 50 hidden units trained with HF gives results comparable to the network trained with SGD in \cite{hamel2010learning} and better results than the rectifier network trained with the same number of units. However the sigmoid network with 500 units performs much worse, although training and validation errors were lower. This implies that the larger network overfits the training data. HF, as an optimization algorithm doesn't specifically deal with the problem of overfitting. Overfitting can be reduced with the usual regularisation techniques, which we tried to keep to a minimum to be able to compare the features learnt by the two kinds of networks (except when using Dropout). However we obtain significant improvements in training time and in reduction of hyper-parameters that need to be tuned. With the number of iterations fixed to the values described earlier, HF takes 12 hours (averaged over 4 trials) to train the network with 50 hidden units. This is a big improvement in time as compared to \cite{hamel2010learning}. Another advantage of using HF is that these large networks were trained without any layer-wise unsupervised pre-training. 
+%Although HF does not perform better than rectifier networks, the results could be improved by using more regularisation while training, which we avoided to be able to compare what is learnt by the two networks. 
+
+Table 2 shows the results on the genre classification task on the ISMIR dataset. We note that the rectifier network with 500 hidden units and Dropout provides the best classification accuracy of 73.46\%. We performed tests on the train/development split provided for the Audio Description Contest \cite{ismir2004}. We repeated the classification experiment with MFCC and PMSC features for comparison. The classification accuracy with MFCCs was 67.21\% and with PMSCs was 68.45\%. In \cite{silla2010improving}, the authors use several hand-crafted features as input to the same classification task. Although the results can't be directly compared, our results are of the same order if not better than the results achieved by using several hand-crafted features.The above results validate the claim that the learnt features capture information from the audio data that can be used for other tasks. 
+%These results are better than the results obtained using hand-crafted features\cite{silla2010improving,ismir2004}. The fact that the features produce good results on a different dataset, shows that they capture relevant information from frames of audio that can be used for tasks other than what they are trained for. This is made explicit by the fact that the ISMIR dataset contains a ``World" genre which is not reflected in the training set. However the features were able to distinguish this label from other genres.  
+
+\section{Conclusions and Future Work}
+
+In this paper we describe better ways to learn robust features for MIR tasks using Deep Neural Networks. We show that training time can be reduced significantly by using ReLUs and HF. Both the rectifier and sigmoid networks are trained from randomly initialized weights without any pre-training. Once the features are learnt, the feature extraction does not take very long, which makes this approach practical for large datasets. In the future, we would like to apply features learnt from neural nets to improve performance of tasks like artist identification and music transcription. We would also like to explore transfer learning and unsupervised learning algorithms to try to leverage unlabelled data to learn useful features for MIR tasks. 
+
+%\vspace{-1.em}
+%\section{Acknowledgments}
+%We would like to thank X and Y for their very helpful discussions. 
+% References should be produced using the bibtex program from suitable
+% BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
+% style file from IEEE produces unsorted bibliography list.
+% -------------------------------------------------------------------------
+%\bibliographystyle{plain}
+%\bibliography{refs}
+
+\newpage
+\bibliography{biblio}{}
+\bibliographystyle{plain}
+\end{document}
