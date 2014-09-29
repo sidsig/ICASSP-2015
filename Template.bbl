@@ -2,27 +2,28 @@
 
 \bibitem{bay2009evaluation}
 Mert Bay, Andreas~F Ehmann, and J~Stephen Downie.
-\newblock Evaluation of multiple-f0 estimation and tracking systems.
-\newblock In {\em ISMIR}, pages 315--320, 2009.
+\newblock Evaluation of multiple-{F0} estimation and tracking systems.
+\newblock In {\em International Society for Music Information Retrieval
+  Conference}, pages 315--320, 2009.
 
 \bibitem{bock2012polyphonic}
-S~Bock and Markus Schedl.
+Sebastian Bock and Markus Schedl.
 \newblock Polyphonic piano note transcription with recurrent neural networks.
-\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE
-  International Conference on}, pages 121--124. IEEE, 2012.
+\newblock In {\em IEEE International Conference on Acoustics, Speech and Signal
+  Processing (ICASSP)}, pages 121--124. IEEE, 2012.
 
 \bibitem{boulanger2012modeling}
 Nicolas Boulanger-lewandowski, Yoshua Bengio, and Pascal Vincent.
 \newblock Modeling temporal dependencies in high-dimensional sequences:
   Application to polyphonic music generation and transcription.
-\newblock In {\em Proceedings of the 29th International Conference on Machine
-  Learning (ICML-12)}, pages 1159--1166, 2012.
+\newblock In {\em 29th Int. Conf. Machine Learning (ICML)}, pages 1159--1166,
+  2012.
 
 \bibitem{boulanger2013high}
 Nicolas Boulanger-Lewandowski, Yoshua Bengio, and Pascal Vincent.
 \newblock High-dimensional sequence transduction.
-\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
-  International Conference on}, pages 3178--3182. IEEE, 2013.
+\newblock In {\em IEEE International Conference on Acoustics, Speech and Signal
+  Processing (ICASSP)}, pages 3178--3182. IEEE, 2013.
 
 \bibitem{boulangerphone}
 Nicolas Boulanger-Lewandowski, Jasha Droppo, Mike Seltzer, and Dong Yu.
@@ -32,7 +33,7 @@ Nicolas Boulanger-Lewandowski, Jasha Droppo, Mike Seltzer, and Dong Yu.
 Valentin Emiya, Roland Badeau, and Bertrand David.
 \newblock Multipitch estimation of piano sounds using a new probabilistic
   spectral smoothness principle.
-\newblock {\em Audio, Speech, and Language Processing, IEEE Transactions on},
+\newblock {\em IEEE Transactions on Audio, Speech, and Language Processing},
   18(6):1643--1654, 2010.
 
 \bibitem{goodfellow2009measuring}
@@ -52,7 +53,12 @@ Geoffrey Hinton, Li~Deng, Dong Yu, George~E Dahl, Abdel-rahman Mohamed, Navdeep
   et~al.
 \newblock Deep neural networks for acoustic modeling in speech recognition: The
   shared views of four research groups.
-\newblock {\em Signal Processing Magazine, IEEE}, 29(6):82--97, 2012.
+\newblock {\em IEEE Signal Processing Magazine}, 29(6):82--97, 2012.
+
+\bibitem{Klapuri06book}
+Anssi Klapuri and Manuel Davy, editors.
+\newblock {\em Signal Processing Methods for Music Transcription}.
+\newblock Springer-Verlag, New York, 2006.
 
 \bibitem{Lafferty:2001:CRF:645530.655813}
 John~D. Lafferty, Andrew McCallum, and Fernando C.~N. Pereira.
@@ -65,12 +71,19 @@ John~D. Lafferty, Andrew McCallum, and Fernando C.~N. Pereira.
 Juhan Nam, Jiquan Ngiam, Honglak Lee, and Malcolm Slaney.
 \newblock A classification-based polyphonic piano transcription approach using
   learned feature representations.
-\newblock In {\em ISMIR}, pages 175--180, 2011.
+\newblock In {\em International Society for Music Information Retrieval
+  Conference (ISMIR)}, pages 175--180, 2011.
 
 \bibitem{poliner2006discriminative}
 Graham~E Poliner and Daniel~PW Ellis.
 \newblock A discriminative model for polyphonic piano transcription.
 \newblock {\em EURASIP Journal on Advances in Signal Processing}, 2007, 2006.
+
+\bibitem{raczynski2013dynamic}
+S.A Raczynski, E.~Vincent, and S.~Sagayama.
+\newblock Dynamic bayesian networks for symbolic polyphonic pitch modeling.
+\newblock {\em IEEE Transactions on Audio, Speech, and Language Processing},
+  21(9):1830--1840, Sept 2013.
 
 \bibitem{schmidhuber1992learning}
 J{\"u}rgen Schmidhuber.
@@ -80,8 +93,15 @@ J{\"u}rgen Schmidhuber.
 
 \bibitem{sigtiarnn}
 Siddharth Sigtia, Emmanouil Benetos, Srikanth Cherla, Tillman Weyde, Artur
-  S~d’Avila Garcez, and Simon Dixon.
-\newblock An rnn-based music language model for improving automatic music
+  S.~d’Avila Garcez, and Simon Dixon.
+\newblock An {RNN}-based music language model for improving automatic music
   transcription.
+
+\bibitem{simsekli2013hierarchical}
+Umut Simsekli, Jonathan Le~Roux, and John~R. Hershey.
+\newblock Hierarchical and coupled non-negative dynamical systems with
+  application to audio modeling.
+\newblock In {\em IEEE Workshop on Applications of Signal Processing to Audio
+  and Acoustics (WASPAA)}, Oct 2013.
 
 \end{thebibliography}

@@ -1,50 +1,60 @@
-This is BibTeX, Version 0.99c (Web2C 7.5.6)
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: Template.aux
 The style file: plain.bst
 Database file #1: biblio.bib
+I was expecting a `,' or a `}'---line 11 of file biblio.bib
+ :    
+ :    booktitle={IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 29 of file biblio.bib
+ :   
+ :   booktitle={International Society for Music Information Retrieval Conference (ISMIR)},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--empty journal in boulangerphone
 Warning--empty year in boulangerphone
 Warning--empty journal in sigtiarnn
 Warning--empty year in sigtiarnn
-You've used 14 entries,
+You've used 17 entries,
             2118 wiz_defined-function locations,
-            577 strings with 7032 characters,
-and the built_in function-call counts, 5944 in all, are:
-= -- 586
-> -- 295
+            595 strings with 7573 characters,
+and the built_in function-call counts, 6893 in all, are:
+= -- 673
+> -- 345
 < -- 7
-+ -- 118
-- -- 102
-* -- 411
-:= -- 929
-add.period$ -- 42
-call.type$ -- 14
-change.case$ -- 92
++ -- 137
+- -- 118
+* -- 480
+:= -- 1089
+add.period$ -- 51
+call.type$ -- 17
+change.case$ -- 108
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 238
-empty$ -- 443
-format.name$ -- 102
-if$ -- 1276
+cite$ -- 21
+duplicate$ -- 276
+empty$ -- 523
+format.name$ -- 118
+if$ -- 1472
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 14
-newline$ -- 71
-num.names$ -- 28
-pop$ -- 111
+int.to.str$ -- 17
+missing$ -- 17
+newline$ -- 86
+num.names$ -- 35
+pop$ -- 132
 preamble$ -- 1
-purify$ -- 78
+purify$ -- 92
 quote$ -- 0
-skip$ -- 193
+skip$ -- 214
 stack$ -- 0
-substring$ -- 387
-swap$ -- 86
+substring$ -- 433
+swap$ -- 90
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 56
+type$ -- 66
 warning$ -- 4
-while$ -- 55
-width$ -- 16
-write$ -- 150
-(There were 4 warnings)
+while$ -- 63
+width$ -- 19
+write$ -- 182
+(There were 2 error messages)
