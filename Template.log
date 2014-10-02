@@ -1,20 +1,24 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.1.7)  29 SEP 2014 12:53
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  2 OCT 2014 09:58
 entering extended mode
+ \write18 enabled.
  %&-line parsing enabled.
 **Template.tex
 (./Template.tex
 LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
-ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
-9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
-skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
-orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
-, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
-rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
+ icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
+iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
+ lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
+ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
+ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
+.
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -29,24 +33,24 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 ) (./spconf.sty)
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks14
 \ex@=\dimen103
 ))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen104
 )
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count87
@@ -87,40 +91,47 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks19
 )
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/etc/texmf/tex/latex/config/graphics.cfg
-File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+(/usr/local/texlive/2011/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)
 \Gread@gobject=\count99
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
 )
-(/usr/share/texmf-texlive/tex/latex/comment/comment.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/comment/comment.sty
 \CommentStream=\write3
 
 Excluding comment 'comment')
-(/usr/share/texmf-texlive/tex/latex/algorithms/algorithm.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/algorithms/algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 
-(/usr/share/texmf-texlive/tex/latex/float/float.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count100
 \float@exts=\toks20
@@ -128,51 +139,104 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks21
 \@floatcapt=\box29
 )
-(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
 \@float@every@algorithm=\toks22
 \c@algorithm=\count101
 )
-(/usr/share/texmf-texlive/tex/latex/pstricks/pstricks.sty
-Package: pstricks 2008/11/26 v0.40 LaTeX wrapper for `PSTricks' (RN,HV)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2011/04/23 v0.50 LaTeX wrapper for `PSTricks' (RN,HV)
 
-(/usr/share/texmf-texlive/tex/generic/pstricks/pstricks.tex
-`PSTricks' v1.29  <2009/05/19> (tvz)
+>>> Loading package auto-pst-pdf <<<
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/pstricks/pstricks.tex
+(/usr/local/texlive/2011/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks23
+\XKV@tempa@toks=\toks24
+\XKV@depth=\count102
+File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
+)))
+(/usr/local/texlive/2011/texmf-dist/tex/generic/pstricks/pst-fp.tex
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count103
+\pstFP@xia=\count104
+\pstFP@xib=\count105
+\pstFP@xfa=\count106
+\pstFP@xfb=\count107
+\pstFP@rega=\count108
+\pstFP@regb=\count109
+\pstFP@regs=\count110
+\pstFP@times=\count111
+)
+\psLoopIndex=\count112
+
+`PSTricks' v2.20  <2011/04/23> (tvz)
 \pst@dima=\dimen114
 \pst@dimb=\dimen115
 \pst@dimc=\dimen116
 \pst@dimd=\dimen117
 \pst@dimg=\dimen118
 \pst@dimh=\dimen119
+\pst@dimm=\dimen120
+\pst@dimn=\dimen121
+\pst@dimo=\dimen122
+\pst@dimp=\dimen123
 \pst@hbox=\box30
-\pst@boxg=\box31
-\pst@cnta=\count102
-\pst@cntb=\count103
-\pst@cntc=\count104
-\pst@cntd=\count105
-\pst@cntg=\count106
-\pst@cnth=\count107
-\pst@toks=\toks23
-(/usr/share/texmf-texlive/tex/generic/pstricks/pstricks.con)
-\psunit=\dimen120
-\psxunit=\dimen121
-\psyunit=\dimen122
-\pslinewidth=\dimen123
-\pst@customdefs=\toks24
-\pslinearc=\dimen124
-\everypsbox=\toks25
-\psframesep=\dimen125
-\pslabelsep=\dimen126
-\pst@shift=\dimen127
-\theoverlaybox=\box32
+\pst@ibox=\box31
+\pst@boxg=\box32
+\pst@cnta=\count113
+\pst@cntb=\count114
+\pst@cntc=\count115
+\pst@cntd=\count116
+\pst@cntg=\count117
+\pst@cnth=\count118
+\pst@cntm=\count119
+\pst@cntn=\count120
+\pst@cnto=\count121
+\pst@cntp=\count122
+\@zero=\count123
+\pst@toks=\toks25
+(/usr/local/texlive/2011/texmf-dist/tex/generic/pstricks/pstricks.con)
+\psunit=\dimen124
+\psxunit=\dimen125
+\psyunit=\dimen126
+\pst@C@@rType=\count124
+\pslinewidth=\dimen127
+\psk@startLW=\dimen128
+\psk@endLW=\dimen129
+\pst@customdefs=\toks26
+\pslinearc=\dimen130
+\pst@symbolStep=\dimen131
+\pst@symbolWidth=\dimen132
+\everypsbox=\toks27
+\psframesep=\dimen133
+\pslabelsep=\dimen134
+\pst@shift=\dimen135
+\theoverlaybox=\box33
 )
-File: pstricks.tex 2009/05/19 v1.29 `PSTricks' (tvz,hv)
+File: pstricks.tex 2011/04/23 v2.20 `PSTricks' (tvz,hv)
 
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2011/texmf-dist/tex/generic/pstricks/pst-fp.tex)
+File: pst-fp.tex 2011/04/23 v2.20 `PST-fp' (hv)
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-(/etc/texmf/tex/latex/config/color.cfg
+(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package xcolor Info: Package option `pdf' ignored on input line 216.
@@ -187,112 +251,116 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 ))
-(/usr/share/texmf-texlive/tex/latex/auto-pst-pdf/auto-pst-pdf.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/auto-pst-pdf/auto-pst-pdf.sty
 Package: auto-pst-pdf 2009/04/26 v0.6 Wrapper for pst-pdf
 
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in pdf mode detected.
-)
-(/usr/share/texmf-texlive/tex/latex/xkeyval/xkeyval.sty
-Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2010/10/22 v0.4 Testing for the operating system
 
-(/usr/share/texmf-texlive/tex/generic/xkeyval/xkeyval.tex
-\XKV@toks=\toks26
-\XKV@tempa@toks=\toks27
-\XKV@depth=\count108
-File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
-))
-(/usr/share/texmf-texlive/tex/latex/ifplatform/ifplatform.sty
-Package: ifplatform 2009/09/10 v0.3a Testing for the operating system
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
- (HO)
-
-(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
-)
-)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
 )
-(/usr/share/texmf-texlive/tex/generic/oberdiek/catchfile.sty
-Package: catchfile 2007/11/11 v1.2 Catches the contents of a file (HO)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/catchfile.sty
+Package: catchfile 2011/03/01 v1.6 Catches the contents of a file (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+))
+runsystem(uname -s > "Template.w18")...executed.
+
+
+(./Template.w18)
+runsystem(rm -- "Template.w18")...executed.
+
 )
+\c@app@runs=\count125
+runsystem(echo " ")...executed.
 
-Package ifplatform Warning: 
-    shell escape is disabled, so I can only detect \ifwindows.
+runsystem(echo "-------------------------------------------------")...executed.
 
-)
-\c@app@runs=\count109
+runsystem(echo "auto-pst-pdf: Auxiliary LaTeX compilation")...executed.
 
+runsystem(echo "-------------------------------------------------")...executed.
 
-! Package auto-pst-pdf Error: 
-    "shell escape" (or "write18") is not enabled:
-    auto-pst-pdf will not work!
+runsystem(rm -- "Template-pics.pdf")...executed.
+
+runsystem(latex -no-shell-escape -jobname="Template-autopp" -interaction=batchm
+ode  "\let \APPmakepictures \empty \input  Template.tex")...executed.
+
+runsystem(dvips -Ppdf -o "Template-autopp.ps" "Template-autopp.dvi")...executed
 .
 
-See the auto-pst-pdf package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.134         Or turn off auto-pst-pdf.}
-                                        %
-You need to run LaTeX with the equivalent of "pdflatex -shell-escape"
-    Or turn off auto-pst-pdf.
+runsystem(ps2pdf -dAutoRotatePages=/None "Template-autopp.ps" "Template-autopp.
+pdf")...executed.
 
-(/usr/share/texmf-texlive/tex/latex/pst-pdf/pst-pdf.sty
+runsystem(pdfcrop  "Template-autopp.pdf" "Template-pics.pdf")...executed.
+
+runsystem(rm -- "Template-autopp.log")...executed.
+
+runsystem(rm -- "Template-autopp.dvi")...executed.
+
+runsystem(rm -- "Template-autopp.ps")...executed.
+
+runsystem(rm -- "Template-autopp.pdf")...executed.
+
+runsystem(echo "-------------------------------------------------")...executed.
+
+runsystem(echo "auto-pst-pdf: End auxiliary LaTeX compilation")...executed.
+
+runsystem(echo "-------------------------------------------------")...executed.
+
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/pst-pdf/pst-pdf.sty
 Package: pst-pdf 2008/10/09 v1.1v PS graphics for pdfLaTeX (RN,HjG)
-\c@pspicture=\count110
+\c@pspicture=\count126
 Package pst-pdf Info: MODE: 1 (pdfTeX mode) on input line 214.
 \ppf@output=\toks28
 
-(/usr/share/texmf/tex/latex/preview/preview.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/preview/preview.sty
 Package: preview 2010/02/14 11.86 (AUCTeX/preview-latex)
-\pr@snippet=\count111
-\pr@box=\box33
+\pr@snippet=\count127
+\pr@box=\box34
 \pr@output=\toks29
 )
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/dvips.def
 File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 )
-(/usr/share/texmf-texlive/tex/latex/environ/environ.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2008/06/18 v0.2 A new way to define environments
 )))
-(/usr/share/texmf-texlive/tex/latex/psfrag/psfrag.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/psfrag/psfrag.sty
 Package: psfrag 1998/04/11 v3.04 PSfrag (MCG)
-\pfg@pcount=\count112
-\pfg@scount=\count113
+\pfg@pcount=\count128
+\pfg@scount=\count129
 \pfg@temp=\write4
-) (./algpseudocode.sty
+)
+(./algpseudocode.sty
 Package: algpseudocode 
-
-(./algorithmicx.sty
+ (./algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count114
-\c@ALG@rem=\count115
-\c@ALG@nested=\count116
+\c@ALG@line=\count130
+\c@ALG@rem=\count131
+\c@ALG@nested=\count132
 \ALG@tlm=\skip46
 \ALG@thistlm=\skip47
-\c@ALG@Lnr=\count117
-\c@ALG@blocknr=\count118
-\c@ALG@storecount=\count119
-\c@ALG@tmpcounter=\count120
+\c@ALG@Lnr=\count133
+\c@ALG@blocknr=\count134
+\c@ALG@storecount=\count135
+\c@ALG@tmpcounter=\count136
 \ALG@tmplength=\skip48
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+) (/usr/local/texlive/2011/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
@@ -307,7 +375,7 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
 
-(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
 LaTeX Info: Redefining \oldstylenums on input line 266.
@@ -375,27 +443,27 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
 LaTeX Font Info:    ... okay on input line 66.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 66.
-
-(/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2011/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 66.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 66.
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+(/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count121
-\scratchdimen=\dimen128
-\scratchbox=\box34
-\nofMPsegments=\count122
-\nofMParguments=\count123
+\scratchcounter=\count137
+\scratchdimen=\dimen136
+\scratchbox=\box35
+\nofMPsegments=\count138
+\nofMParguments=\count139
 \everyMPshowfont=\toks30
-\MPscratchCnt=\count124
-\MPscratchDim=\dimen129
-\MPnumerator=\count125
+\MPscratchCnt=\count140
+\MPscratchDim=\dimen137
+\MPnumerator=\count141
+\makeMPintoPDFobject=\count142
 \everyMPtoPDFconversion=\toks31
 )
 Preview: Fontsize 10pt
@@ -406,9 +474,15 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 75.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+Underfull \vbox (badness 2020) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
+
+Non-PDF special ignored!
+Non-PDF special ignored!
 
 ]
 Overfull \hbox (6.8229pt too wide) in paragraph at lines 141--142
@@ -422,49 +496,50 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 153.
 
 (./FigArchitecture.tex
-<Template-pics.pdf, id=12, page=1, 430.60875pt x 207.77625pt>
+<Template-pics.pdf, id=13, page=1, 430.60875pt x 207.77625pt>
 File: Template-pics.pdf Graphic file (type pdf)
 
-<use Template-pics.pdf, page 1>) [2 <./Template-pics.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+<use Template-pics.pdf, page 1>
+Package pdftex.def Info: Template-pics.pdf, page1 used on input line 49.
+(pdftex.def)             Requested size: 430.60768pt x 207.77573pt.
+) [2 <./Template-pics.pdf>]
 LaTeX Font Info:    Try loading font information for TS1+ptm on input line 260.
 
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd
+(/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [3] (./Template.bbl
-Underfull \vbox (badness 1286) has occurred while \output is active []
-
- [4]
+) [3]
+(./Template.bbl [4]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
-)
-[5] (./Template.aux) ) 
+) [5] (./Template.aux) ) 
 Here is how much of TeX's memory you used:
- 4931 strings out of 493848
- 63396 string characters out of 1152824
- 153705 words of memory out of 3000000
- 8100 multiletter control sequences out of 15000+50000
+ 5479 strings out of 493633
+ 74941 string characters out of 3143378
+ 167709 words of memory out of 3000000
+ 8656 multiletter control sequences out of 15000+200000
  23824 words of font info for 51 fonts, out of 3000000 for 9000
- 714 hyphenation exceptions out of 8191
- 33i,11n,48p,1065b,438s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/shar
-e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy6.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-texlive/fo
-nts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/
-utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/sh
-are/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Template.pdf (5 pages, 179030 bytes).
+ 831 hyphenation exceptions out of 8191
+ 37i,11n,48p,1538b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2011/texmf-dist/fonts/enc/dvips/bas
+e/8r.enc}</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cmextr
+a/cmex9.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi6.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi9.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6
+.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pf
+b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
+/usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
+sr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr
+/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/tex
+live/2011/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2011
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2011/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Template.pdf (5 pages, 167345 bytes).
 PDF statistics:
- 84 PDF objects out of 1000 (max. 8388607)
+ 86 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

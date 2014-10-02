@@ -1,60 +1,46 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Template.aux
 The style file: plain.bst
 Database file #1: biblio.bib
-I was expecting a `,' or a `}'---line 11 of file biblio.bib
- :    
- :    booktitle={IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 29 of file biblio.bib
- :   
- :   booktitle={International Society for Music Information Retrieval Conference (ISMIR)},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Warning--empty journal in boulangerphone
-Warning--empty year in boulangerphone
-Warning--empty journal in sigtiarnn
-Warning--empty year in sigtiarnn
-You've used 17 entries,
+You've used 18 entries,
             2118 wiz_defined-function locations,
-            595 strings with 7573 characters,
-and the built_in function-call counts, 6893 in all, are:
-= -- 673
-> -- 345
-< -- 7
-+ -- 137
-- -- 118
-* -- 480
-:= -- 1089
-add.period$ -- 51
-call.type$ -- 17
-change.case$ -- 108
+            603 strings with 7824 characters,
+and the built_in function-call counts, 7675 in all, are:
+= -- 760
+> -- 358
+< -- 9
++ -- 142
+- -- 122
+* -- 517
+:= -- 1178
+add.period$ -- 56
+call.type$ -- 18
+change.case$ -- 113
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 276
-empty$ -- 523
-format.name$ -- 118
-if$ -- 1472
+cite$ -- 18
+duplicate$ -- 320
+empty$ -- 605
+format.name$ -- 122
+if$ -- 1673
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 17
-newline$ -- 86
-num.names$ -- 35
-pop$ -- 132
+int.to.str$ -- 18
+missing$ -- 18
+newline$ -- 93
+num.names$ -- 37
+pop$ -- 139
 preamble$ -- 1
-purify$ -- 92
+purify$ -- 96
 quote$ -- 0
-skip$ -- 214
+skip$ -- 256
 stack$ -- 0
-substring$ -- 433
-swap$ -- 90
-text.length$ -- 7
+substring$ -- 518
+swap$ -- 118
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 66
-warning$ -- 4
-while$ -- 63
-width$ -- 19
-write$ -- 182
-(There were 2 error messages)
+type$ -- 70
+warning$ -- 0
+while$ -- 71
+width$ -- 20
+write$ -- 200

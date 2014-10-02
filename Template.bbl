@@ -16,8 +16,8 @@ Sebastian Bock and Markus Schedl.
 Nicolas Boulanger-lewandowski, Yoshua Bengio, and Pascal Vincent.
 \newblock Modeling temporal dependencies in high-dimensional sequences:
   Application to polyphonic music generation and transcription.
-\newblock In {\em 29th Int. Conf. Machine Learning (ICML)}, pages 1159--1166,
-  2012.
+\newblock In {\em Proceedings of the 29th International Conference on Machine
+  Learning (ICML)}, pages 1159--1166, 2012.
 
 \bibitem{boulanger2013high}
 Nicolas Boulanger-Lewandowski, Yoshua Bengio, and Pascal Vincent.
@@ -28,6 +28,8 @@ Nicolas Boulanger-Lewandowski, Yoshua Bengio, and Pascal Vincent.
 \bibitem{boulangerphone}
 Nicolas Boulanger-Lewandowski, Jasha Droppo, Mike Seltzer, and Dong Yu.
 \newblock Phone sequence modeling with recurrent neural networks.
+\newblock In {\em IEEE International Conference on Acoustics, Speech and Signal
+  Processing (ICASSP)}, pages 5417--5421, May 2014.
 
 \bibitem{emiya2010multipitch}
 Valentin Emiya, Roland Badeau, and Bertrand David.
@@ -67,6 +69,12 @@ John~D. Lafferty, Andrew McCallum, and Fernando C.~N. Pereira.
 \newblock In {\em Proceedings of the Eighteenth International Conference on
   Machine Learning}, ICML '01, pages 282--289, 2001.
 
+\bibitem{Martens2011}
+J.~Martens and I.~Sutskever.
+\newblock Learning recurrent neural networks with {Hessian-free} optimization.
+\newblock In {\em Proceedings of the 28th International Conference Machine on
+  Learning (ICML)}, pages 1033--1040, 2011.
+
 \bibitem{nam2011classification}
 Juhan Nam, Jiquan Ngiam, Honglak Lee, and Malcolm Slaney.
 \newblock A classification-based polyphonic piano transcription approach using
@@ -96,6 +104,8 @@ Siddharth Sigtia, Emmanouil Benetos, Srikanth Cherla, Tillman Weyde, Artur
   S.~d’Avila Garcez, and Simon Dixon.
 \newblock An {RNN}-based music language model for improving automatic music
   transcription.
+\newblock In {\em International Society for Music Information Retrieval
+  Conference (ISMIR)}, 2014.
 
 \bibitem{simsekli2013hierarchical}
 Umut Simsekli, Jonathan Le~Roux, and John~R. Hershey.
