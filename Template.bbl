@@ -47,7 +47,7 @@ Ian Goodfellow, Honglak Lee, Quoc~V Le, Andrew Saxe, and Andrew~Y Ng.
 \bibitem{graves2012sequence}
 Alex Graves.
 \newblock Sequence transduction with recurrent neural networks.
-\newblock {\em arXiv preprint arXiv:1211.3711}, 2012.
+\newblock In {\em Representation Learning Workshop, ICML}, 2012.
 
 \bibitem{hinton2012deep}
 Geoffrey Hinton, Li~Deng, Dong Yu, George~E Dahl, Abdel-rahman Mohamed, Navdeep
@@ -85,13 +85,18 @@ Juhan Nam, Jiquan Ngiam, Honglak Lee, and Malcolm Slaney.
 \bibitem{poliner2006discriminative}
 Graham~E Poliner and Daniel~PW Ellis.
 \newblock A discriminative model for polyphonic piano transcription.
-\newblock {\em EURASIP Journal on Advances in Signal Processing}, 2007, 2006.
+\newblock {\em EURASIP Journal on Advances in Signal Processing}, 2007, 2007.
 
 \bibitem{raczynski2013dynamic}
 S.A Raczynski, E.~Vincent, and S.~Sagayama.
 \newblock Dynamic bayesian networks for symbolic polyphonic pitch modeling.
 \newblock {\em IEEE Transactions on Audio, Speech, and Language Processing},
   21(9):1830--1840, Sept 2013.
+
+\bibitem{RumelhartHintonWIlliams1986}
+D.E. Rumelhart, G.E. Hintont, and R.J. Williams.
+\newblock {Learning representations by back-propagating errors}.
+\newblock {\em Nature}, 323:533--536, 1986.
 
 \bibitem{schmidhuber1992learning}
 J{\"u}rgen Schmidhuber.

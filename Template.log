@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  3 OCT 2014 11:09
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  3 OCT 2014 12:26
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -525,13 +525,13 @@ Missing character: There is no ™ in font ptmr7t!
 )
 [5] (./Template.aux) ) 
 Here is how much of TeX's memory you used:
- 5479 strings out of 493633
- 74941 string characters out of 3143378
- 167709 words of memory out of 3000000
- 8656 multiletter control sequences out of 15000+200000
+ 5480 strings out of 493633
+ 74970 string characters out of 3143378
+ 167713 words of memory out of 3000000
+ 8657 multiletter control sequences out of 15000+200000
  23824 words of font info for 51 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 37i,11n,48p,1537b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,11n,48p,1520b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2011/texmf-dist/fonts/enc/dvips/base/
 8r.enc}</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cmextra/
 cmex9.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cm
@@ -546,7 +546,7 @@ ocal/texlive/2011/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texli
 ve/2011/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2011/t
 exmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2011/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on Template.pdf (5 pages, 167408 bytes).
+Output written on Template.pdf (5 pages, 166623 bytes).
 PDF statistics:
  86 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream
