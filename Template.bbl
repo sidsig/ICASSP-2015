@@ -4,7 +4,7 @@
 Mert Bay, Andreas~F Ehmann, and J~Stephen Downie.
 \newblock Evaluation of multiple-{F0} estimation and tracking systems.
 \newblock In {\em International Society for Music Information Retrieval
-  Conference}, pages 315--320, 2009.
+  Conference (ISMIR)}, pages 315--320, 2009.
 
 \bibitem{bock2012polyphonic}
 Sebastian Bock and Markus Schedl.
@@ -41,8 +41,8 @@ Valentin Emiya, Roland Badeau, and Bertrand David.
 \bibitem{goodfellow2009measuring}
 Ian Goodfellow, Honglak Lee, Quoc~V Le, Andrew Saxe, and Andrew~Y Ng.
 \newblock Measuring invariances in deep networks.
-\newblock In {\em Advances in neural information processing systems}, pages
-  646--654, 2009.
+\newblock In {\em Advances in Neural Information Processing Systems (NIPS)},
+  pages 646--654, 2009.
 
 \bibitem{graves2012sequence}
 Alex Graves.
